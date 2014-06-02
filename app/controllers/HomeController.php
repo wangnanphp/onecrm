@@ -1,11 +1,11 @@
 <?php
 
-class HomeController extends BaseController {
+class HomeController extends BaseController {  
 
 	/*
 	|--------------------------------------------------------------------------
 	| Default Home Controller
-	|--------------------------------------------------------------------------
+	|----------------------------------------z----------------------------------
 	|
 	| You may wish to use controllers instead of, or in addition to, Closure
 	| based routes. That's great! Here is an example controller method to
