@@ -1,4 +1,4 @@
--- --------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 --
 -- FileName: database.sql
 -- Description: onecrm 系统数据库源码
@@ -11,19 +11,19 @@
 -- Since: 2014-06-03 15:26:00
 -- Alter Date:
 --
--- --------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 
 
--- --------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 -- Database: `onecrm`
 -- Description: 系统数据库创建
--- --------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 DROP DATABASE IF EXISTS `onecrm`;
 CREATE DATABASE `onecrm` CHARSET=UTF8;
 USE onecrm;
 
 
--- --------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 -- Table(1): `user`
 -- Description: 用户信息表
 --
@@ -37,7 +37,7 @@ CREATE TABLE `user`(
     `nickname` VARCHAR(30) NOT NULL DEFAULT '',             -- 昵称
     `lastlogintime` INT(10) NOT NULL DEFAULT '0',           -- 最后登录时间
     `lastloginip` CHAR(15) NOT NULL DEFAULT '',             -- 最后登录IP
-    `loginnum` INT(10) UNSIGNED NOT NULL DEFAULT '0',       -- 登录次数
+    `loginnum` INT(10) UNSIGNED NOT NULL DEFAULT '0',       -- 登录总次数
     `addtime` INT(10) UNSIGNED NOT NULL DEFAULT '0',        -- 添加时间
     `sex` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',         -- 性别
     `photo` VARCHAR(255) NOT NULL DEFAULT '',               -- 照片
@@ -53,14 +53,15 @@ CREATE TABLE `user`(
     `relationphone` CHAR(11) NOT NULL DEFAULT '',           -- 亲属电话
     `qq` VARCHAR(20) NOT NULL DEFAULT '',                   -- QQ
     `ww` VARCHAR(20) NOT NULL DEFAULT '',                   -- 旺旺
-    `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',      -- 状态
+    `work` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',        -- 工作(0在职,1离职)
+    `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',      -- 状态(0正常,1锁定)
     PRIMARY KEY(`id`),
     UNIQUE KEY(`loginname`),
     UNIQUE KEY(`nickname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
--- --------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 -- Table(2): `department`
 -- Description: 部门信息表
 --
@@ -75,7 +76,7 @@ CREATE TABLE `user`(
 -- ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
--- --------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 -- Table(2): `role`
 -- Description: 角色信息表(此处对应部门)
 --
@@ -90,23 +91,23 @@ CREATE TABLE `role`(
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
--- --------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 -- Table(3): `permission`
 -- Description: 权限信息表
 --
 DROP TABLE IF EXISTS `permission`;
 CREATE TABLE `permission`(
     `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,    -- 主键(ID)
-    `name` VARCHAR(60) not null default '',           -- 权限名
-    `controller` VARCHAR(30) NOT NULL DEFAULT '',     -- 控制器名
-    `method` VARCHAR(30) NOT NULL DEFAULT '',         -- 方法名
-    `description` VARCHAR(255) not null default '',   -- 权限描述
+    `name` VARCHAR(60) not null default '',                -- 权限名
+    `controller` VARCHAR(30) NOT NULL DEFAULT '',          -- 控制器名
+    `method` VARCHAR(30) NOT NULL DEFAULT '',              -- 方法名
+    `description` VARCHAR(255) not null default '',        -- 权限描述
     PRIMARY KEY(`id`),
     UNIQUE KEY(`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
--- --------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 -- Table(4): `user_role`
 -- Description: 用户角色关系表
 --
@@ -122,7 +123,7 @@ CREATE TABLE `user_role`(
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
--- --------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 -- Table(5): `role_permission`
 -- Description: 角色权限关系表
 --
@@ -138,7 +139,7 @@ CREATE TABLE `role_permission`(
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
--- --------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 -- Table(6): `goods`
 -- Description: 商品信息表
 --
@@ -151,3 +152,26 @@ CREATE TABLE `goods`(
     KEY(`role_id`),
     KEY(`permission_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+-- -----------------------------------------------------------------------------
+-- Table(7) `regcode`
+-- Description 注册码信息表
+--
+DROP TABLE IF EXISTS `regcode`;
+CREATE TABLE `regcode` (
+    `id` int(10) unsigned NOT NULL auto_increment,              -- 主键
+    `number` varchar(255) NOT NULL default '',                  -- 注册码
+    `value` varchar(80)  NOT NULL default '0',                  -- 价值
+    `type` varchar(80) NOT NULL default '',                     -- 类别
+    `add_user_id` mediumint(8) unsigned NOT NULL default '0',   -- FK-用户ID
+    `add_time` int(10) unsigned NOT NULL default '0',           -- 添加时间
+    `get_user_id` mediumint(8) unsigned NOT NULL default '0',   -- FK-用户ID
+    `get_time` int(10) unsigned NOT NULL default '0',           -- 领取时间
+    `allow` tinyint(1) unsigned NOT NULL default '1',           -- 是否开放领取
+    `used` tinyint(1) unsigned NOT NULL default '0',            -- 是否被领取
+    `del` tinyint(1) unsigned NOT NULL default '0',             -- 是否被删除
+    `remark` varchar(255) NOT NULL default '',                  -- 备注
+    PRIMARY KEY (`regcode_id`),
+    UNIQUE KEY (`regcode_number`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
