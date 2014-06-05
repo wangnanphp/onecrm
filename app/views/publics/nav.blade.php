@@ -2,7 +2,7 @@
     <header class="logo-env">
         <!-- logo -->
         <div class="logo">
-            <a href="/"> {{ HTML::image('static/images/logo.png') }} </a>
+            <a href="/"> {{ HTML::image('static/template/images/logo.png') }} </a>
         </div>
         <!-- logo collapse icon -->
         <div class="sidebar-collapse">
@@ -141,5 +141,5 @@
                 </li>
             </ul>
         </li>
-    </ul>    
+    </ul>
 </div>

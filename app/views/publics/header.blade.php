@@ -4,7 +4,10 @@
         <ul class="user-info pull-left pull-none-xsm">
             <!-- Profile Info -->
             <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="../../../neon-x/assets/images/thumb-1.png" alt="" class="img-circle" /> Art Ramadani </a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    {{ HTML::image('static/template/images/thumb-1.png', '', ['class' => 'img-circle']) }}
+                    Art Ramadani
+                </a>
                 <ul class="dropdown-menu">
                     <!-- Reverse Caret -->
                     <li class="caret"></li>
@@ -57,7 +60,7 @@
     <ul class="dropdown-menu-list scroller">
         <li class="active">
             <a href="#">
-                <span class="image pull-right"> <img src="../../../neon-x/assets/images/thumb-1.png" alt="" class="img-circle" /> </span>
+                <span class="image pull-right"> {{ HTML::image('static/template/images/thumb-1.png', '', ['class' => 'img-circle']) }} </span>
                 <span class="line"> <strong>Luc Chartier</strong> - yesterday </span>
                 <span class="line desc small"> This ain’t our first item, it is the best of the rest. </span>
             </a>
