@@ -13,10 +13,7 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('index.index');
 });
 
-Route::get('/left', function()
-{
-	return View::make('left.left');
-});
+Route::get('/regcode', 'RegcodeController@showList');
