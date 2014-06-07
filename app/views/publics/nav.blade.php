@@ -40,5 +40,25 @@
                 </li>
             </ul>
         </li>
+        {{-- 实物管理 S --}}
+        <li class="opened active">
+            <a href="/"><i class="entypo-gauge"></i><span>实体货物</span></a>
+            <ul>
+                <li class="opened active"><a href="/regcode"><i class="entypo-doc-text-inv"></i><span>实物管理</span></a>
+                    <ul>
+                        <li><a href="/regcode"><i class="entypo-plus-squared"></i><span>快速查询</span></a></li>
+                        <li><a href="/regcode"><i class="entypo-plus-squared"></i><span>添加商品</span></a></li>
+                        <li><a href=""><i class="entypo-help"></i><span>实物类别管理</span></a></li>
+                        <li class="active"><a href=""><i class="entypo-flag"></i><span>实物商品管理</span></a></li>
+                        <li><a href=""><i class="entypo-doc-text"></i><span>实物销售管理</span></a></li>
+                        <li><a href=""><i class="entypo-doc-text"></i><span>实物贮存管理</span></a></li>
+                        <li><a href=""><i class="entypo-doc-text"></i><span>实物退换管理</span></a></li>
+                        <li><a href=""><i class="entypo-cancel-squared"></i><span>过期实物商品</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        {{-- 实物管理 E --}}
+
     </ul>
 </div>
