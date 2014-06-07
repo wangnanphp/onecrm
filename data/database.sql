@@ -84,9 +84,9 @@ CREATE TABLE `user`(
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role`(
     `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,    -- 主键(ID)
-    `pid` MEDIUMINT(8) UNSIGNED NOT NULL 0,                -- 上级角色ID
-    `name` VARCHAR(60) not null default '',                -- 角色名
-    `description` VARCHAR(255) not null default '',        -- 角色描述
+    `pid` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,                -- 上级角色ID
+    `name` VARCHAR(60) NOT NULL DEFAULT '',                -- 角色名
+    `description` VARCHAR(255) NOT NULL DEFAULT '',        -- 角色描述
     PRIMARY KEY(`id`),
     UNIQUE KEY(`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -99,10 +99,10 @@ CREATE TABLE `role`(
 DROP TABLE IF EXISTS `permission`;
 CREATE TABLE `permission`(
     `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,    -- 主键(ID)
-    `name` VARCHAR(60) not null default '',                -- 权限名
+    `name` VARCHAR(60) NOT NULL DEFAULT '',                -- 权限名
     `controller` VARCHAR(30) NOT NULL DEFAULT '',          -- 控制器名
     `method` VARCHAR(30) NOT NULL DEFAULT '',              -- 方法名
-    `description` VARCHAR(255) not null default '',        -- 权限描述
+    `description` VARCHAR(255) NOT NULL DEFAULT '',        -- 权限描述
     PRIMARY KEY(`id`),
     UNIQUE KEY(`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -204,11 +204,12 @@ CREATE TABLE `regcode` (
     `type_name` VARCHAR(50) NOT NULL DEFAULT '',               -- 类别名
     `platform_id` MEDIUMINT(8) NOT NULL DEFAULT 1,             -- FK-使用平台ID
     `platform_name` VARCHAR(50) NOT NULL DEFAULT '',           -- 使用平台名称
-    `add_user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,    -- FK-添加用户ID
-    `add_time` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 添加时间
+    `user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,        -- FK-添加用户ID
     `allow` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',          -- 是否开放销售
     `used` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,             -- FK-销售表ID
-    `del` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,              -- 是否被删除
+    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 添加时间
+    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 修改时间
+    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 软删除
     `remark` VARCHAR(255) NOT NULL DEFAULT '',                 -- 备注
     PRIMARY KEY (`id`),
     UNIQUE KEY (`number`)
@@ -220,9 +221,9 @@ CREATE TABLE `regcode` (
 -- Description 注册码销售表
 --
 DROP TABLE IF EXISTS `regcode_sell`;
-CREATE TABLE `regcode` (
+CREATE TABLE `regcode_sell` (
     `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,             -- 主键
-    `regcode_id` INT(10) NOT NULL DEFAULT '',                  -- FK-注册码ID
+    `regcode_id` INT(10) NOT NULL DEFAULT 0,                  -- FK-注册码ID
     `get_user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,    -- FK-领取用户ID
     `get_time` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 领取时间
     `buyer_name` VARCHAR(30) NOT NULL DEFAULT '',              -- 购买者姓名
@@ -233,5 +234,5 @@ CREATE TABLE `regcode` (
     `sell_mall_name` VARCHAR(50) NOT NULL DEFAULT '',          -- 销售平台名称
     `remark` VARCHAR(255) NOT NULL DEFAULT '',                 -- 备注
     PRIMARY KEY (`id`),
-    UNIQUE KEY (`regcode_numbe`)
+    UNIQUE KEY (`regcode_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

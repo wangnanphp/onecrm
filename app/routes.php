@@ -17,3 +17,5 @@ Route::get('/', function()
 });
 
 Route::get('/regcode', 'RegcodeController@showList');
+
+Route::get('/regcode/add', 'RegcodeController@add');

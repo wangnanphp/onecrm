@@ -24,7 +24,7 @@
 
     <!-- TS1387507087: Neon - Responsive Admin Template created by Laborator -->
 </head>
-<body class="page-body">
+<body class="page-body page-fade">
     <div class="page-container">
         {{-- Nav S --}}
         @include('publics.nav')
