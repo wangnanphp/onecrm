@@ -23,8 +23,8 @@ var _page = $('#Wrapper').attr('module');
 if(!_page) {return;}
 
 switch(_page){
-    // 模块是首页
-    case 'homePage':
-    seajs.use("module/homePage/init");
-    break;
+    // 注册码模块
+    case 'regcode':
+        seajs.use("module/regcode/init");
+        break;
 }

@@ -7,4 +7,9 @@ class RegcodeController extends BaseController {
         return View::make('regcode.list');
     }
 
+    public function add()
+    {
+        return View::make('regcode.add');
+    }
+
 }
