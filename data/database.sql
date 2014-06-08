@@ -84,7 +84,7 @@ CREATE TABLE `user`(
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role`(
     `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,    -- 主键(ID)
-    `pid` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,                -- 上级角色ID
+    `pid` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,        -- 上级角色ID
     `name` VARCHAR(60) NOT NULL DEFAULT '',                -- 角色名
     `description` VARCHAR(255) NOT NULL DEFAULT '',        -- 角色描述
     PRIMARY KEY(`id`),
@@ -235,4 +235,255 @@ CREATE TABLE `regcode_sell` (
     `remark` VARCHAR(255) NOT NULL DEFAULT '',                 -- 备注
     PRIMARY KEY (`id`),
     UNIQUE KEY (`regcode_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+-- -----------------------------------------------------------------------------
+-- Table(9): `goods`
+-- Description: 商品信息表
+--
+DROP TABLE IF EXISTS `goods`;
+CREATE TABLE `goods` (
+    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,              -- 主键(ID)
+    `user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,         -- FK-添加商品者ID
+    `user_realname` VARCHAR(30) NOT NULL DEFAULT '',            -- 添加者姓名
+    `goods_type_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,   -- FK-商品类型ID
+    `goods_type_name` VARCHAR(60) NOT NULL DEFAULT '',          -- 商品类型名称
+    `name` VARCHAR(100) NOT NULL DEFAULT '',                    -- 商品名称
+    `brand` VARCHAR(60) NOT NULL DEFAULT '',                    -- 品牌
+    `cost_price` DECIMAL(10,2) NOT NULL DEFAULT 0,              -- 成本价
+    `sales_price` DECIMAL(10,2) NOT NULL DEFAULT 0,             -- 销售价格
+    `origin` VARCHAR(60) NOT NULL DEFAULT '',                   -- 商品的来源
+    `manufacture` VARCHAR(60) NOT NULL DEFAULT '',              -- 生产商
+    `create_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 创建时间
+    `update_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 修改时间
+    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,           -- 软删除
+    `remark` VARCHAR(255) NOT NULL DEFAULT '',                  -- 备注
+    `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,            -- 状态
+    PRIMARY KEY (`id`),
+    UNIQUE KEY(`name`),
+    KEY(`goods_type_id`),
+    KEY(`cost_price`),
+    KEY(`sales_price`),
+    KEY(`brand`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+-- -----------------------------------------------------------------------------
+-- Table(9) `goods_type`
+-- Description 商品类型表
+--
+DROP TABLE IF EXISTS `goods_type`;
+CREATE TABLE `goods_type` (
+    `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,    -- 商品类型表ID
+    `user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,    -- FK-添加商品者ID
+    `user_realname` VARCHAR(30) NOT NULL DEFAULT '',       -- 添加者姓名
+    `pid` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,        -- 父类型ID
+    `name` VARCHAR(60) NOT NULL DEFAULT '',                -- 类型名称
+    `path` VARCHAR(255) NOT NULL DEFAULT '',               -- 类型路径
+    `dscription` VARCHAR(255) NOT NULL DEFAULT '',         -- 描述
+    `create_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,       -- 创建时间
+    `update_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,       -- 修改时间
+    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 软删除
+    `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,       -- 状态
+    PRIMARY KEY (`id`),
+    UNIQUE KEY(`name`),
+    KEY(`pid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+-- -----------------------------------------------------------------------------
+-- Table(9) `goods_stock`
+-- Description 商品库存表
+--
+DROP TABLE IF EXISTS `goods_stock`;
+CREATE TABLE `goods_stock` (
+    `id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,               -- 商品的库存表ID
+    `goods_id` INT(8) UNSIGNED NOT NULL DEFAULT 0,              -- FK-商品表ID
+    `goods_name` VARCHAR(100) NOT NULL DEFAULT '',              -- 商品名称
+    `user_id` MEDIUMINT(10) UNSIGNED NOT NULL DEFAULT 0,        -- FK-添加商品者ID
+    `user_realname` VARCHAR(30) NOT NULL DEFAULT '',            -- 添加者姓名
+    `goods_type_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,   -- FK-商品类型ID
+    `goods_type_name` VARCHAR(60) NOT NULL DEFAULT '',          -- 类型名称
+    `number` MEDIUMINT(10) UNSIGNED NOT NULL DEFAULT 0,         -- 贮存数量
+    `name` VARCHAR(10) NOT NULL DEFAULT 0,                      -- 贮存商品人
+    `address` VARCHAR(10) NOT NULL DEFAULT 0,                   -- 贮存地址
+    `time` INT(10) UNSIGNED NOT NULL DEFAULT 0,                 -- 贮存时间
+    `create_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 创建时间
+    `update_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 修改时间
+    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,           -- 软删除
+    `remarke` VARCHAR(255) NOT NULL DEFAULT '',                 -- 备注信息
+    `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,            -- 状态
+    PRIMARY KEY (`id`),
+    KEY(`user_id`),
+    KEY(`number`),
+    KEY(`time`),
+    KEY(`goods_name`),
+    KEY(`user_realname`),
+    KEY(`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+-- -----------------------------------------------------------------------------
+-- Table(9) `goods_sell`
+-- Description 商品销售表
+--
+DROP TABLE IF EXISTS `goods_sell`;
+CREATE TABLE `goods_sell` (
+    `id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,                -- 商品销售ID
+    `goods_id` INT(8) UNSIGNED NOT NULL DEFAULT 0,               -- FK-商品表ID
+    `goods_name` VARCHAR(100) NOT NULL DEFAULT '',               -- 商品名称
+    `user_id` MEDIUMINT(10) UNSIGNED NOT NULL DEFAULT 0,         -- FK-添加商品者ID
+    `user_realname` VARCHAR(30) NOT NULL DEFAULT '',             -- 添加者姓名
+    `buyer_id` INT(8) UNSIGNED NOT NULL DEFAULT 0,               -- FK-购买表ID
+    `buyer_name` VARCHAR(10) NOT NULL DEFAULT '',                -- 购买人姓名
+    `goods_back_id` INT(8) UNSIGNED NOT NULL DEFAULT 0,          -- FK-商品退货ID
+    `goods_barter_id` INT(8) UNSIGNED NOT NULL DEFAULT 0,        -- FK-商品换货ID
+    `platform_id` MEDIUMINT(10) UNSIGNED NOT NULL DEFAULT 0,     -- FK-销售平台ID
+    `platform_name` VARCHAR(50) NOT NULL DEFAULT '',             -- 销售平台名称
+    `time` INT(10) UNSIGNED NOT NULL DEFAULT 0,                  -- 销售时间
+    `unit_price` DECIMAL(10,2)  NOT NULL DEFAULT 0,              -- 销售价格
+    `number` MEDIUMINT(10) UNSIGNED NOT NULL DEFAULT 1,          -- 销售数量
+    `order_number` VARCHAR(50) NOT NULL DEFAULT '',              -- 订单号
+    `brush` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,              -- 是否是刷票
+    `color` TINYINT(1) NOT NULL DEFAULT 0,                       -- 颜色
+    `description` VARCHAR(100) NOT NULL DEFAULT '',              -- 商品颜色的描述
+    `create_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,             -- 创建时间
+    `update_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,             -- 修改时间
+    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 软删除
+    `remark` VARCHAR(255) NOT NULL DEFAULT '',                   -- 备注
+    `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,             -- 状态
+    PRIMARY KEY (`id`),
+    KEY(`user_id`),
+    KEY(`buyer_id`),
+    KEY(`goods_back_id`),
+    KEY(`goods_barter_id`),
+    KEY(`platform_id`),
+    KEY(`goods_id`),
+    KEY(`goods_name`),
+    KEY(`time`),
+    KEY(`order_number`),
+    KEY(`unit_price`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+-- -----------------------------------------------------------------------------
+-- Table(9) `goods_buyer`
+-- Description 购买者表
+--
+DROP TABLE IF EXISTS `goods_buyer`;
+CREATE TABLE `goods_buyer` (
+    `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,          -- 商品的销ID
+    `goods_id` INT(8) UNSIGNED NOT NULL DEFAULT 0,               -- FK-商品表ID
+    `goods_name` VARCHAR(100) NOT NULL DEFAULT '',               -- 商品名称
+    `user_id` MEDIUMINT(10) UNSIGNED NOT NULL DEFAULT 0,         -- FK-添加商品者ID
+    `user_realname` VARCHAR(30) NOT NULL DEFAULT '',             -- 添加者姓名
+    `goods_sell_id` INT(8) UNSIGNED NOT NULL DEFAULT 0,          -- FK-商品销售ID
+    `goods_sell_order_number` VARCHAR(50) NOT NULL DEFAULT 0,    -- 销售商品的订单号
+    `name` VARCHAR(10) NOT NULL DEFAULT '',                      -- 购买人姓名
+    `phone` VARCHAR(11) NOT NULL DEFAULT '',                     -- 购买人手机号
+    `delivery_time` INT(10) UNSIGNED NOT NULL DEFAULT 0,         -- 发货时间
+    `qq` VARCHAR(20) NOT NULL DEFAULT '',                        -- QQ号码
+    `ww` VARCHAR(20) NOT NULL DEFAULT '',                        -- 旺旺号码
+    `express` VARCHAR(30) NOT NULL DEFAULT '',                   -- 快递
+    `express_number` VARCHAR(60) NOT NULL DEFAULT '',            -- 快递单号
+    `consignors` VARCHAR(255) NOT NULL DEFAULT '',               -- 发货人
+    `city_id` MEDIUMINT(8) UNSIGNED NOT NULL  DEFAULT 0,         -- FK-城市结连表ID
+    `city_level` MEDIUMINT(8) UNSIGNED NOT NULL  DEFAULT 0,      -- FK-城市结连父ID
+    `city_upid` MEDIUMINT(8) UNSIGNED NOT NULL  DEFAULT 0,       -- FK-城市结连子ID
+    `country` VARCHAR(10) NOT NULL DEFAULT '',                   -- 国家
+    `province` VARCHAR(20) NOT NULL DEFAULT '',                  -- 省
+    `county` VARCHAR(10) NOT NULL DEFAULT '',                    -- 县 （地区）
+    `address` VARCHAR(200) NOT NULL DEFAULT '',                  -- 地址
+    `create_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,             -- 创建时间
+    `update_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,             -- 修改时间
+    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 软删除
+    `remark` VARCHAR(255) NOT NULL DEFAULT '',                   -- 备注
+    `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,             -- 状态
+    PRIMARY KEY (`id`),
+    KEY(`qq`),
+    KEY(`ww`),
+    KEY(`city_id`),
+    KEY(`city_level`),
+    KEY(`city_upid`),
+    KEY(`goods_sell_id`),
+    KEY(`name`),
+    KEY(`phone`),
+    KEY(`delivery_time`),
+    KEY(`express`),
+    KEY(`consignors`),
+    KEY(`express_number`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+-- -----------------------------------------------------------------------------
+-- Table(9) `goods_back`
+-- Description 商品退货表
+--
+DROP TABLE IF EXISTS `goods_back`;
+CREATE TABLE `goods_back` (
+    `id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,                -- 商品退货表ID
+    `goods_sell_id` INT(8) UNSIGNED NOT NULL DEFAULT 0,          -- FK-商品销售ID
+    `goods_sell_order_number` VARCHAR(50) NOT NULL DEFAULT 0,    -- 销售商品的订单号
+    `goods_id` INT(8) UNSIGNED NOT NULL DEFAULT 0,               -- FK-商品表ID
+    `goods_name` VARCHAR(100) NOT NULL DEFAULT '',               -- 退货商品名称
+    `user_id` MEDIUMINT(10) UNSIGNED NOT NULL DEFAULT 0,         -- FK-添加商品者ID
+    `user_realname` VARCHAR(30) NOT NULL DEFAULT '',             -- 添加者姓名
+    `name` VARCHAR(12) NOT NULL DEFAULT '',                      -- 退货给人名
+    `number` INT(10) UNSIGNED NOT NULL DEFAULT 1,                -- 退货数量
+    `reason` VARCHAR(255) NOT NULL DEFAULT '',                   -- 退货原因
+    `time` INT(10) UNSIGNED NOT NULL DEFAULT 0,                  -- 退货时间
+    `handled` VARCHAR(60) NOT NULL DEFAULT '',                   -- 退货经办人
+    `price` DECIMAL(10,2) NOT NULL DEFAULT 0,                    -- 退还价格
+    `create_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,             -- 创建时间
+    `update_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,             -- 修改时间
+    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 软删除
+    `remarke` VARCHAR(255) NOT NULL DEFAULT '',                  -- 备注信息
+    `status` TINYINT(2) UNSIGNED NOT NULL DEFAULT 0,             -- 状态
+    PRIMARY KEY (`id`),
+    UNIQUE KEY (`goods_sell_id`),
+    KEY(`user_id`),
+    KEY(`goods_id`),
+    KEY(`goods_name`),
+    KEY(`goods_sell_order_number`),
+    KEY(`time`),
+    KEY(`handled`),
+    KEY(`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- -----------------------------------------------------------------------------
+-- Table(9) `goods_barter`
+-- Description 商品换货表
+--
+DROP TABLE IF EXISTS `goods_barter`;
+CREATE TABLE `goods_barter` (
+    `id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,                 -- 商品换货ID
+    `goods_sell_id` INT(8) UNSIGNED NOT NULL DEFAULT 0,           -- FK-商品销售ID
+    `goods_sell_order_number` VARCHAR(50) NOT NULL DEFAULT 0,     -- 销售商品的订单号
+    `barter_sell_id` INT(8) UNSIGNED NOT NULL DEFAULT 0,          -- FK-换给货物的ID
+    `barter_sell_order_number` VARCHAR(50) NOT NULL DEFAULT 0,    -- 换货商品的订单号
+    `goods_id` INT(8) UNSIGNED NOT NULL DEFAULT 0,                -- FK-商品表ID
+    `goods_name` VARCHAR(100) NOT NULL DEFAULT '',                -- 换货商品名称
+    `user_id` MEDIUMINT(10) UNSIGNED NOT NULL DEFAULT 0,          -- FK-添加商品者ID
+    `user_realname` VARCHAR(30) NOT NULL DEFAULT '',              -- 添加者姓名
+    `name` VARCHAR(12) NOT NULL DEFAULT '',                       -- 换货给人名
+    `number` INT(10) UNSIGNED NOT NULL DEFAULT 1,                 -- 换货数量
+    `season` VARCHAR(255) NOT NULL DEFAULT '',                    -- 换货理由
+    `time` INT(10) UNSIGNED NOT NULL DEFAULT 0,                   -- 换货时间
+    `handled` VARCHAR(60) NOT NULL DEFAULT '',                    -- 换货经办人
+    `create_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,              -- 创建时间
+    `update_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,              -- 修改时间
+    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,             -- 软删除
+    `remarke` VARCHAR(255) NOT NULL DEFAULT '',                   -- 备注信息
+    `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,              -- 状态
+    PRIMARY KEY (`id`),
+    UNIQUE KEY (`goods_sell_id`),
+    UNIQUE KEY (`barter_sell_id`),
+    KEY(`user_id`),
+    KEY(`goods_id`),
+    KEY(`goods_name`),
+    KEY(`time`),
+    KEY(`handled`),
+    KEY(`goods_sell_order_number`),
+    KEY(`barter_sell_order_number`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
