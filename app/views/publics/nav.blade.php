@@ -52,7 +52,8 @@
                         <li class="active"><a href=""><i class="entypo-flag"></i><span>实物商品管理</span></a></li>
                         <li><a href=""><i class="entypo-doc-text"></i><span>实物销售管理</span></a></li>
                         <li><a href=""><i class="entypo-doc-text"></i><span>实物贮存管理</span></a></li>
-                        <li><a href=""><i class="entypo-doc-text"></i><span>实物退换管理</span></a></li>
+                        <li><a href=""><i class="entypo-doc-text"></i><span>实物退货管理</span></a></li>
+                        <li><a href=""><i class="entypo-doc-text"></i><span>实物换货管理</span></a></li>
                         <li><a href=""><i class="entypo-cancel-squared"></i><span>过期实物商品</span></a></li>
                     </ul>
                 </li>
