@@ -136,7 +136,7 @@ CREATE TABLE `regcode_type` (
     `add_user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,    -- FK-添加用户ID
     `add_time` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 添加时间
     `del` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,              -- 是否被删除
-    `remark` VARCHAR(255) NOT NULL DEFAULT '',                 -- 备注
+    `remark` VARCHAR(100) NOT NULL DEFAULT '',                 -- 备注
     PRIMARY KEY (`id`),
     UNIQUE KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -182,20 +182,20 @@ CREATE TABLE `system_platform` (
 --
 DROP TABLE IF EXISTS `regcode`;
 CREATE TABLE `regcode` (
-    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,             -- 主键
-    `number` VARCHAR(100) NOT NULL DEFAULT '',                 -- 注册码
-    `value` DECIMAL(10,2)  NOT NULL DEFAULT 0,                 -- 价值
-    `type_id` MEDIUMINT(8) NOT NULL DEFAULT 0,                 -- FK-类别ID
-    `type_name` VARCHAR(50) NOT NULL DEFAULT '',               -- 类别名
-    `regcode_terminal_id` MEDIUMINT(8) NOT NULL DEFAULT 1,     -- FK-使用平台ID
-    `regcode_terminal_name` VARCHAR(50) NOT NULL DEFAULT '',   -- 使用平台名称
-    `user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,        -- FK-添加用户ID
-    `allow` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',          -- 是否开放销售
-    `used` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,             -- FK-销售表ID
-    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 添加时间
-    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 修改时间
-    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 软删除
-    `remark` VARCHAR(255) NOT NULL DEFAULT '',                 -- 备注
+    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,              -- 主键
+    `user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,         -- FK-添加用户ID
+    `type_id` MEDIUMINT(8) NOT NULL DEFAULT 0,                  -- FK-类别ID
+    `regcode_terminal_id` MEDIUMINT(8) NOT NULL DEFAULT 1,      -- FK-使用平台ID
+    `user_realname` VARCHAR(30) NOT NULL DEFAULT '',            -- 添加者姓名
+    `type_name` VARCHAR(50) NOT NULL DEFAULT '',                -- 类别名
+    `regcode_terminal_name` VARCHAR(50) NOT NULL DEFAULT '',    -- 使用平台名称
+    `number` VARCHAR(100) NOT NULL DEFAULT '',                  -- 注册码号
+    `value` DECIMAL(10,2)  NOT NULL DEFAULT 0,                  -- 价值
+    `allow_sell` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',      -- 是否开放销售
+    `regcode_sell_id` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- FK-是否销售ID
+    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,           -- 添加时间
+    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,           -- 修改时间
+    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,           -- 软删除
     PRIMARY KEY (`id`),
     UNIQUE KEY (`number`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

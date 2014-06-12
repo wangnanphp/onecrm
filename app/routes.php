@@ -18,4 +18,8 @@ Route::get('/', function()
 
 Route::get('/regcode', 'RegcodeController@showList');
 
-Route::get('/regcode/add', 'RegcodeController@add');
+Route::get('/regcode/addRegcode', 'RegcodeController@addRegcode');
+
+Route::any('/regcode/addConfig', 'RegcodeController@addConfig');
+
+Route::any('/regcode/doAddType', 'RegcodeController@doAddType');
