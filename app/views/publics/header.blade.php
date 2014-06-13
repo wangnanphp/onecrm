@@ -68,21 +68,21 @@
         </li>
         <li class="active">
             <a href="#">
-                <span class="image pull-right"> <img src="../../../neon-x/assets/images/thumb-2.png" alt="" class="img-circle" /> </span>
+                <span class="image pull-right"> {{ HTML::image('static/template/images/thumb-2.png', '', ['class' => 'img-circle']) }} </span>
                 <span class="line"> <strong>Salma Nyberg</strong> - 2 days ago </span>
                 <span class="line desc small"> Oh he decisively impression attachment friendship so if everything. </span>
             </a>
         </li>
         <li>
             <a href="#">
-                <span class="image pull-right"> <img src="../../../neon-x/assets/images/thumb-3.png" alt="" class="img-circle" /> </span>
+                <span class="image pull-right"> {{ HTML::image('static/template/images/thumb-3.png', '', ['class' => 'img-circle']) }} </span>
                 <span class="line"> Hayden Cartwright - a week ago </span>
                 <span class="line desc small"> Whose her enjoy chief new young. Felicity if ye required likewise so doubtful. </span>
             </a>
         </li>
         <li>
             <a href="#">
-                <span class="image pull-right"> <img src="../../../neon-x/assets/images/thumb-4.png" alt="" class="img-circle" /> </span>
+                <span class="image pull-right"> {{ HTML::image('static/template/images/thumb-4.png', '', ['class' => 'img-circle']) }} </span>
                 <span class="line"> Sandra Eberhardt - 16 days ago </span>
                 <span class="line desc small"> On so attention necessary at by provision otherwise existence direction. </span>
             </a>
