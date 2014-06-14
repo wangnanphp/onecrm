@@ -11,10 +11,12 @@
     {{ HTML::style('static/template/css/font-icons/entypo/css/entypo.css', ['id' => 'style-resource-2']) }}
     {{ HTML::style('static/template/css/font-icons/entypo/css/animation.css', ['id' => 'style-resource-3']) }}
     <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic"  id="style-resource-4"> -->
-    {{ HTML::style('static/template/css/googleapis/fonts.css', ['id' => 'style-resource-4']) }}
+    {{-- HTML::style('static/template/css/googleapis/fonts.css', ['id' => 'style-resource-4']) --}}
     {{ HTML::style('static/template/css/neon.css', ['id' => 'style-resource-5']) }}
     {{ HTML::style('static/template/css/custom.css', ['id' => 'style-resource-6']) }}
     {{ HTML::script('static/template/js/jquery-1.10.2.min.js') }}
+    {{ HTML::script('static/script/lib/seajs/2.2.1/sea.js', ['id' => 'seajsnode']) }}
+    {{ HTML::script('static/script/config/seaConfig.js') }}
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -54,24 +56,33 @@
         @include('publics.chat')
         {{-- Chat E --}}
     </div>
-    <!-- script src="../../../neon-x/assets/js/gsap/main-gsap.js" id="script-resource-1"></script -->
+
+    {{ HTML::style('static/template/js/select2/select2-bootstrap.css', ['id' => 'style-resource-7']) }}
+    {{ HTML::style('static/template/js/select2/select2.css', ['id' => 'style-resource-8']) }}
+    {{ HTML::style('static/template/js/selectboxit/jquery.selectBoxIt.css', ['id' => 'style-resource-9']) }}
+    {{ HTML::style('static/template/js/daterangepicker/daterangepicker-bs3.css', ['id' => 'style-resource-10']) }}
+
     {{ HTML::script('static/template/js/gsap/main-gsap.js', ['id' => 'script-resource-1']) }}
-    <!-- script src="../../../neon-x/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js" id="script-resource-2"></script -->
     {{ HTML::script('static/template/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js', ['id' => 'script-resource-2']) }}
-    <!-- script src="../../../neon-x/assets/js/bootstrap.min.js" id="script-resource-3"></script -->
     {{ HTML::script('static/template/js/bootstrap.min.js', ['id' => 'script-resource-3']) }}
-    <!-- script src="../../../neon-x/assets/js/joinable.js" id="script-resource-4"></script -->
     {{ HTML::script('static/template/js/joinable.js', ['id' => 'script-resource-4']) }}
-    <!-- script src="../../../neon-x/assets/js/resizeable.js" id="script-resource-5"></script -->
     {{ HTML::script('static/template/js/resizeable.js', ['id' => 'script-resource-5']) }}
-    <!-- script src="../../../neon-x/assets/js/neon-api.js" id="script-resource-6"></script -->
     {{ HTML::script('static/template/js/neon-api.js', ['id' => 'script-resource-6']) }}
-    <!-- script src="../../../neon-x/assets/js/neon-chat.js" id="script-resource-7"></script -->
     {{ HTML::script('static/template/js/neon-chat.js', ['id' => 'script-resource-7']) }}
-    <!-- script src="../../../neon-x/assets/js/neon-custom.js" id="script-resource-8"></script -->
     {{ HTML::script('static/template/js/neon-custom.js', ['id' => 'script-resource-8']) }}
-    <!-- script src="../../../neon-x/assets/js/neon-demo.js" id="script-resource-9"></script -->
     {{ HTML::script('static/template/js/neon-demo.js', ['id' => 'script-resource-9']) }}
+    {{ HTML::script('static/template/js/select2/select2.min.js', ['id' => 'script-resource-10']) }}
+    {{ HTML::script('static/template/js/bootstrap-tagsinput.min.js', ['id' => 'script-resource-11']) }}
+    {{ HTML::script('static/template/js/selectboxit/jquery.selectBoxIt.min.js', ['id' => 'script-resource-12']) }}
+    {{ HTML::script('static/template/js/typeahead.min.js', ['id' => 'script-resource-13']) }}
+    {{ HTML::script('static/template/js/bootstrap-datepicker.js', ['id' => 'script-resource-14']) }}
+    {{ HTML::script('static/template/js/bootstrap-timepicker.min.js', ['id' => 'script-resource-15']) }}
+    {{ HTML::script('static/template/js/bootstrap-colorpicker.min.js', ['id' => 'script-resource-16']) }}
+    {{ HTML::script('static/template/js/daterangepicker/moment.min.js', ['id' => 'script-resource-17']) }}
+    {{ HTML::script('static/template/js/daterangepicker/daterangepicker.js', ['id' => 'script-resource-18']) }}
+    {{ HTML::script('static/template/js/jquery.multi-select.js', ['id' => 'script-resource-19']) }}
+    {{ HTML::script('static/template/js/bootstrap-switch.min.js', ['id' => 'script-resource-20']) }}
+
     <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-28991003-3']);
