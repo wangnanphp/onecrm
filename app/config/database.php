@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'onecrm',
 			'username'  => 'root',
-			'password'  => 'nanwang',
+			'password'  => 'xiaowei521',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
