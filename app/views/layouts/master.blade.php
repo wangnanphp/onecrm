@@ -15,7 +15,7 @@
     {{ HTML::style('static/template/css/neon.css', ['id' => 'style-resource-5']) }}
     {{ HTML::style('static/template/css/custom.css', ['id' => 'style-resource-6']) }}
     {{ HTML::script('static/template/js/jquery-1.10.2.min.js') }}
-    {{ HTML::script('static/script/lib/seajs/2.2.1/sea.js') }}
+    {{ HTML::script('static/script/lib/seajs/2.2.1/sea.js', ['id' => 'seajsnode']) }}
     {{ HTML::script('static/script/config/seaConfig.js') }}
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

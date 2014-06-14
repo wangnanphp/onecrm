@@ -21,11 +21,11 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            <form id="form1" method="post" class="validate form-horizontal form-groups-bordered" action="/regcode/doAddType">
+                            <form id="add-type-form" class="validate form-horizontal form-groups-bordered">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="type_name">注册码类型名</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" type="text" name="type_name" data-validate="required" data-message-required="亲，注册码类型必须写哦！" placeholder="必须" />
+                                        <input id="regcode-type" class="form-control" type="text" name="type_name" data-validate="required" data-message-required="亲，注册码类型必须写哦！" placeholder="必须" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -35,7 +35,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-9">
-                                    <button id="json-add-type" type="submit" class="btn btn-success">添加</button>
+                                    <button id="json-add-type" class="btn btn-success" type="submit" data-url="/regcode/doAddType">添加</button>
                                     <button type="reset" class="btn">重置</button>
                                 </div>
                             </form>
@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-9">
-                                    <button type="submit" class="btn btn-success">添加</button>
+                                    <button id="json-add-platform" class="btn btn-success" type="submit" data-url="/regcode/doAddPlatform">添加</button>
                                     <button type="reset" class="btn">重置</button>
                                 </div>
                             </form>

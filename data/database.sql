@@ -18,8 +18,8 @@
 -- Database: `onecrm`
 -- Description: 系统数据库创建
 -- -----------------------------------------------------------------------------
--- DROP DATABASE IF EXISTS `onecrm`;
--- CREATE DATABASE `onecrm` CHARSET=UTF8;
+DROP DATABASE IF EXISTS `onecrm`;
+CREATE DATABASE `onecrm` CHARSET=UTF8;
 USE onecrm;
 
 
