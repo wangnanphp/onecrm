@@ -1,6 +1,8 @@
 define(function(require, explode) {
     // 导入消息配置
     var toastorMsg = require('module/common/config/toastorMsg');
+    // 包含提示消息JS库模块
+    require('template/js/toastr');
 
     explode.submitFormByJson = function(btnID) {
         $(btnID).click(function() {

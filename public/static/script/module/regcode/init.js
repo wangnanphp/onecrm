@@ -4,9 +4,6 @@ define(function(require, explode) {
 
     switch( _curPage ) {
         case 'add-config':
-            // 包含提示消息JS库模块
-            require('template/js/toastr');
-
             // 包含提交表单模块
             var addConfig = require('module/common/method/submitForm');
             addConfig.submitFormByJson('#json-add-type');

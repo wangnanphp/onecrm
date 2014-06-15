@@ -16,14 +16,9 @@ Route::get('/', function()
 	return View::make('index.index');
 });
 
-Route::get('/sw',function()
-{
-return 
 
-});
 
 Route::get('/regcode', 'RegcodeController@showList');
-
 Route::get('/regcode/addRegcode', 'RegcodeController@addRegcode');
 Route::get('/regcode/addConfig', function()
 {
@@ -31,3 +26,17 @@ Route::get('/regcode/addConfig', function()
 });
 Route::post('/regcode/doAddType', 'RegcodeController@doAddType');
 Route::post('/regcode/doAddPlatform', 'RegcodeController@doAddPlatform');
+
+
+/*
+*  liuxiaowei
+*/
+
+Route::get('/entity/index', 'EntityController@index');
+
+/*
+Route::get('/entity/index', function()
+{
+    return View::make('entity.index');
+});
+*/
