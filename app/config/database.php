@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => '8.zhikao51.com',
 			'database'  => 'onecrm',
-			'username'  => 'root',
-			'password'  => 'xiaowei521',
+			'username'  => 'wangnan',
+			'password'  => 'nanwang',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
