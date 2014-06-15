@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-    'local'      => array('WN-PC'), // 本地开发环境
+    'local'      => array('WN-PC', 'localhost.localdomain', 'liuxiaowei'), // 本地开发环境
     'produciton' => 'AY130227035736cb11543',    // 生产环境
 
 ));

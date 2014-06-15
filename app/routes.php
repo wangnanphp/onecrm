@@ -16,8 +16,6 @@ Route::get('/', function()
 	return View::make('index.index');
 });
 
-
-
 Route::get('/regcode', 'RegcodeController@showList');
 Route::get('/regcode/addRegcode', 'RegcodeController@addRegcode');
 Route::get('/regcode/addConfig', function()
