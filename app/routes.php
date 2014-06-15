@@ -31,6 +31,8 @@ Route::post('/regcode/doAddPlatform', 'RegcodeController@doAddPlatform');
 */
 
 Route::get('/entity/index', 'EntityController@index');
+Route::get('/entity/search', 'EntityController@search');
+Route::get('/entity/addEntity', 'EntityController@addEntity');
 
 /*
 Route::get('/entity/index', function()

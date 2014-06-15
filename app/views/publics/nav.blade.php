@@ -20,7 +20,7 @@
                 <button type="submit"><i class="entypo-search"></i></button>
             </form>
         </li>
-        <li class="opened active">
+        <li>
             <a href="/"><i class="entypo-gauge"></i><span>虚拟货物</span></a>
             <ul>
                 <li><a href="../../../neon-x/dashboard/main/index.html"><i class="entypo-home"></i><span>我的注册码</span></a>
@@ -48,24 +48,55 @@
             </ul>
         </li>
         {{-- 实物管理 S --}}
-        <li class="opened active">
-            <a href="/"><i class="entypo-gauge"></i><span>实体货物</span></a>
+        <li>
+             <a href=""> <i class="entypo-mail"></i><span>实体货物管理</span></a>
             <ul>
-                <li class="opened active"><a href="/regcode"><i class="entypo-doc-text-inv"></i><span>实物管理</span></a>
-                    <ul>
-                        <li><a href="/regcode"><i class="entypo-plus-squared"></i><span>快速查询</span></a></li>
-                        <li><a href="/regcode"><i class="entypo-plus-squared"></i><span>添加商品</span></a></li>
-                        <li><a href=""><i class="entypo-help"></i><span>实物类别管理</span></a></li>
-                        <li class="active"><a href=""><i class="entypo-flag"></i><span>实物商品管理</span></a></li>
-                        <li><a href=""><i class="entypo-doc-text"></i><span>实物销售管理</span></a></li>
-                        <li><a href=""><i class="entypo-doc-text"></i><span>实物贮存管理</span></a></li>
-                        <li><a href=""><i class="entypo-doc-text"></i><span>实物退货管理</span></a></li>
-                        <li><a href=""><i class="entypo-doc-text"></i><span>实物换货管理</span></a></li>
-                        <li><a href=""><i class="entypo-cancel-squared"></i><span>过期实物商品</span></a></li>
-                    </ul>
-                </li>
+            <li> <a href="/entity/search"><i class="entypo-inbox"></i><span>快速查询</span></a></li>
+            <li> <a href=""><i class="entypo-plus-squared"></i><span>实物管理</span></a>
+                <ul>
+                  <li> <a href="/entity/index"><i class="entypo-plus-squared"></i><span>浏览实物</span></a> </li>
+                  <li> <a href="/entity/addEntity"><i class="entypo-list-add"></i></i><span>添加实物</span></a> </li>
+                </ul>
+            </li>
+            <li> <a href=""><i class="entypo-plus-squared"></i><span>实物类别管理</span></a>
+                 <ul>
+                    <li> <a href=""><i class="entypo-plus-squared"></i><span>浏览分类</span></a> </li>
+                    <li> <a href=""><i class="entypo-list-add"></i><span>添加分类</span></a> </li>
+                  </ul>
+            </li>
+            <li> <a href=""><i class="entypo-attach"></i><span>实物销售管理</span></a>
+                  <ul>
+                    <li> <a href=""><i class="entypo-plus-squared"></i><span>浏览销售实物</span></a> </li>
+                    <li> <a href=""><i class="entypo-list-add"></i><span>添加分类</span></a> </li>
+                  </ul>
+            </li>
+            <li><a href=""><i class="entypo-doc-text"></i><span>实物贮存管理</span></a>
+                 <ul>
+                    <li> <a href=""><i class="entypo-plus-squared"></i><span>浏览贮存实物</span></a> </li>
+                    <li> <a href=""><i class="entypo-list-add"></i><span>添加实物</span></a> </li>
+                  </ul>
+            </li>
+            <li><a href=""><i class="entypo-doc-text"></i><span>实物退货管理</span></a>
+                 <ul>
+                    <li> <a href=""><i class="entypo-plus-squared"></i><span>浏览退货实物</span></a> </li>
+                    <li> <a href=""><i class="entypo-list-add"></i><span>添加退货实物</span></a> </li>
+                  </ul>
+            </li>
+            <li><a href=""><i class="entypo-doc-text"></i><span>实物换货管理</span></a>
+                 <ul>
+                    <li> <a href=""><i class="entypo-plus-squared"></i><span>浏览换货实物</span></a> </li>
+                    <li> <a href=""><i class="entypo-list-add"></i><span>添加换货实物</span></a> </li>
+                  </ul>
+            </li>
+            <li><a href=""><i class="entypo-cancel-squared"></i><span>过期实物商品</span></a>
+                  <ul>
+                    <li> <a href=""><i class="entypo-plus-squared"></i><span>浏览过期实物</span></a> </li>
+                  </ul>
+            </li>
             </ul>
         </li>
+
+
         {{-- 实物管理 E --}}
 
     </ul>
