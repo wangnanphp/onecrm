@@ -23,9 +23,9 @@
                         <div class="panel-body">
                             <form id="add-type-form" class="validate form-horizontal form-groups-bordered">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="type_name">注册码类型名</label>
+                                    <label class="col-sm-2 control-label" for="name">注册码类型名</label>
                                     <div class="col-sm-9">
-                                        <input id="regcode-type" class="form-control" type="text" name="type_name" data-validate="required" data-message-required="亲，注册码类型必须写哦！" placeholder="必须" />
+                                        <input id="regcode-type" class="form-control" type="text" name="name" data-validate="required" data-message-required="亲，注册码类型必须写哦！" placeholder="必须" />
                                     </div>
                                 </div>
                                 <div class="form-group">

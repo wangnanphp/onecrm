@@ -12,9 +12,9 @@ class BaseModel extends Eloquent {
 
     /**
      * 重写 created_at 和 updated_at 数据字段格式
-     * @return [type] [description]
+     * @return int  时间戳
      */
-    public function freshTimestamp()
+    public function getDateFormat()
     {
         return time();
     }

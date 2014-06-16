@@ -31,14 +31,24 @@ class RegcodeController extends BaseController {
      */
     public function doAddType()
     {
-        $json_response = array('status' => 1, 'msg' => Input::get('type_name'));
-        dd(Input::only('type_name', 'remark','sdl'));
-        if(Input::only('type_name', 'remark'))
+        $json_response = array('status' => -1, 'msg' => '未知错误！');
+
+        if ( ! Input::has('name') )
         {
-            $json_response = array('status' => 0, 'msg' => Input::get('type_name'));
+            $json_response = array('status' => 1, 'msg' => '请输入注册码类型名！');
+        }
+        else
+        {
+            $regcode = new RegcodeType();
+            $regcode->name = Input::get('name');
+            $regcode->remark = Input::get('remark') ?: '';
+            $regcode->save();
+
+            $json_response = array('status' => 0, 'msg' => '注册码类型添加成功！');
         }
 
-        echo json_encode($json_response);
+
+        echo self::json_output($json_response);
     }
 
     /**

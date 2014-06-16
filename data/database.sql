@@ -134,8 +134,9 @@ CREATE TABLE `regcode_type` (
     `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,        -- 主键(ID)
     `name` VARCHAR(50) NOT NULL DEFAULT '',                    -- 类别名称
     `add_user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,    -- FK-添加用户ID
-    `add_time` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 添加时间
-    `del` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,              -- 是否被删除
+    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 添加时间
+    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 修改时间
+    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 软删除
     `remark` VARCHAR(100) NOT NULL DEFAULT '',                 -- 备注
     PRIMARY KEY (`id`),
     UNIQUE KEY (`name`)
@@ -151,8 +152,9 @@ CREATE TABLE `regcode_platform` (
     `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,        -- 主键
     `name` VARCHAR(50) NOT NULL DEFAULT '',                    -- 类别名称
     `add_user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,    -- FK-添加用户ID
-    `add_time` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 添加时间
-    `del` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,              -- 是否被删除
+    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 添加时间
+    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 修改时间
+    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 软删除
     `remark` VARCHAR(255) NOT NULL DEFAULT '',                 -- 备注
     PRIMARY KEY (`id`),
     UNIQUE KEY (`name`)
