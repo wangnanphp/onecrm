@@ -16,14 +16,23 @@ Route::get('/', function()
 	return View::make('index.index');
 });
 
+/* Regcode S */
 Route::get('/regcode', 'RegcodeController@showList');
 Route::get('/regcode/addRegcode', 'RegcodeController@addRegcode');
 Route::get('/regcode/addConfig', function()
 {
-    return View::make('regcode.addConfig');
+    return View::make('regcodes.addConfig');
 });
 Route::post('/regcode/doAddType', 'RegcodeController@doAddType');
 Route::post('/regcode/doAddPlatform', 'RegcodeController@doAddPlatform');
+/* Regcode E */
+
+/* User S */
+Route::get('/user/add', function()
+{
+    return View::make('users.add');
+});
+/* User E */
 
 
 /*

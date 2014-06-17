@@ -131,13 +131,13 @@ CREATE TABLE `role_permission`(
 --
 DROP TABLE IF EXISTS `regcode_type`;
 CREATE TABLE `regcode_type` (
-    `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,        -- 主键(ID)
-    `name` VARCHAR(50) NOT NULL DEFAULT '',                    -- 类别名称
-    `add_user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,    -- FK-添加用户ID
-    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 添加时间
-    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 修改时间
-    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 软删除
-    `remark` VARCHAR(100) NOT NULL DEFAULT '',                 -- 备注
+    `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,    -- 主键(ID)
+    `name` VARCHAR(50) NOT NULL DEFAULT '',                -- 类别名称
+    `user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,    -- FK-添加用户ID
+    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 添加时间
+    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 修改时间
+    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 软删除
+    `remark` VARCHAR(100) NOT NULL DEFAULT '',             -- 备注
     PRIMARY KEY (`id`),
     UNIQUE KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

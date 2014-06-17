@@ -14,7 +14,7 @@
     {{-- HTML::style('static/template/css/googleapis/fonts.css', ['id' => 'style-resource-4']) --}}
     {{ HTML::style('static/template/css/neon.css', ['id' => 'style-resource-5']) }}
     {{ HTML::style('static/template/css/custom.css', ['id' => 'style-resource-6']) }}
-    {{ HTML::script('static/template/js/jquery-1.10.2.min.js') }}
+    {{ HTML::script('static/script/lib/jquery/1.10.2/jquery-1.10.2.min.js') }}
     {{ HTML::script('static/script/lib/seajs/2.2.1/sea.js', ['id' => 'seajsnode']) }}
     {{ HTML::script('static/script/config/seaConfig.js') }}
 
@@ -82,6 +82,7 @@
     {{ HTML::script('static/template/js/daterangepicker/daterangepicker.js', ['id' => 'script-resource-18']) }}
     {{ HTML::script('static/template/js/jquery.multi-select.js', ['id' => 'script-resource-19']) }}
     {{ HTML::script('static/template/js/bootstrap-switch.min.js', ['id' => 'script-resource-20']) }}
+    {{ HTML::script('static/script/lib/jqueryvalidation/1.11.1/jquery.validate.min.js', ['id' => 'script-resource-21']) }}
 
     <script type="text/javascript">
         var _gaq = _gaq || [];
