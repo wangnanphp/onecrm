@@ -13,7 +13,7 @@ class RegcodeController extends BaseController {
      */
     public function addRegcode()
     {
-        return View::make('regcode.add');
+        return View::make('regcodes.addRegcode');
     }
 
 
@@ -22,7 +22,7 @@ class RegcodeController extends BaseController {
      */
     public function addConfig()
     {
-        return View::make('regcode.addConfig');
+        return View::make('regcodes.addConfig');
     }
 
     /**

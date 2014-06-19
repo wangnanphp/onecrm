@@ -21,16 +21,23 @@ seajs.config({
     // 预加载
     // preload: ['jquery']
 });
-seajs.use('jquery');
-// $(function() {
-//     // 得到当前页面是哪个模型
-//     var _module = $('#wrapper').attr('module');
-//     if( ! _module ) {return;}
 
-//     switch( _module ){
-//         // 注册码模块
-//         case 'regcode':
-//             seajs.use("module/regcode/init");
-//             break;
-//     }
-// });
+$(function() {
+    // 得到当前页面是哪个模型
+    var _module = $('#wrapper').attr('module');
+    if( ! _module ) {return;}
+
+    switch( _module ){
+        // 注册码模块
+        case 'regcode':
+            seajs.use('module/regcode/init');
+            break;
+        // 用户管理(员工管理)模块
+        case 'user':
+            // seajs.use('module/user/init');
+        // 角色管理(部门管理)模块
+        case 'role':
+            // seajs.use('module/role/init');
+            break;
+    }
+});

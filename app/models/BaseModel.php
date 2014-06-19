@@ -11,7 +11,7 @@ class BaseModel extends Eloquent {
 
 
     /**
-     * 重写 created_at 和 updated_at 数据字段格式
+     * 重写 created_at 和 updated_at 数据字段格式为时间戳格式
      * @return int  时间戳
      */
     public function getDateFormat()

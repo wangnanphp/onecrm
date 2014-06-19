@@ -31,7 +31,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="remark">类型描述</label>
                                     <div class="col-sm-9">
-                                        <textarea id="field-ta" class="form-control autogrow" name="remark" placeholder="描述信息可不写"></textarea>
+                                        <textarea id="t-remark" class="form-control autogrow" name="remark" placeholder="描述信息可不写"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-9">
@@ -62,7 +62,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="remark">平台描述</label>
                                     <div class="col-sm-9">
-                                        <textarea id="field-ta" class="form-control autogrow" placeholder="描述信息可不写"></textarea>
+                                        <textarea id="p-remark" class="form-control autogrow" placeholder="描述信息可不写"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-9">
