@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-9">
-                        <button type="submit" class="btn btn-success">提交</button>
+                        <button id="json-add-user" type="submit" class="btn btn-success">提交</button>
                         <button type="reset" class="btn">重置</button>
                     </div>
                 </form>

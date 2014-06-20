@@ -47,8 +47,7 @@ class RegcodeController extends BaseController {
             $json_response = array('status' => 0, 'msg' => '注册码类型添加成功！');
         }
 
-
-        echo self::json_output($json_response);
+        self::json_output($json_response);
     }
 
     /**

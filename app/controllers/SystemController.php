@@ -1,18 +1,30 @@
 <?php
 
-class RoleController extends BaseController {
-
+class SystemController extends BaseController {
 
     /**
-     * 添加角色页面
+     * 执行添加销售平台
      */
-    public function add()
+    public function doAddPlatform()
     {
-        // 获取所有的角色信息
-        $roles = new Role;
-        $roles = $roles->getAllRoles();
+        $json_reponse = ['status' => -1, 'msg' => '未知错误'];
 
-        return View::make('roles.addRole')->with('roles', $roles);
+        // 判断是否输入了平台名
+        if ( ! Input::has('name') )
+        {
+            $json_response = array('status' => 1, 'msg' => '请输入销售平台名称！');
+        }
+        else
+        {
+            $regcode = new SystemPlatform;
+            $regcode->name = Input::get('name');
+            $regcode->description = Input::get('description') ?: '';
+            $regcode->save();
+
+            $json_response = array('status' => 0, 'msg' => '新销售平台添加成功！');
+        }
+
+        self::json_output($json_response);
     }
 
 
@@ -43,7 +55,7 @@ class RoleController extends BaseController {
             $role->name        = Input::get('name');
             $role->pid         = $pid;
             $role->path        =  $path;
-            $role->description = Input::get('description') ?: '';
+            $role->description = Input::get('description');
             $role->save();
             // print_r(DB::getQueryLog());
             $json_reponse = ['status' => 0, 'msg' => '新部门添加成功！'];

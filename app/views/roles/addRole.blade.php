@@ -25,15 +25,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="description">上级部门</label>
+                        <label class="col-sm-2 control-label" for="parent">上级部门</label>
                         <div class="col-sm-9">
-                            <select id="regcode_type" name="test" class="selectboxit">
+                            <select id="parent" name="parent" class="selectboxit">
                                 <optgroup label="请选择上级部门">
-                                    <option value="1">Alabama</option>
-                                    <option value="2">Boston</option>
-                                    <option value="3">Ohaio</option>
-                                    <option value="4">New York</option>
-                                    <option value="5">Washington</option>
+                                    <option value="0">顶级部门</option>
+                                @foreach($roles as $r_v)
+                                    <option value="{{ $r_v->id }}">
+                                        |&sim;
+                                        <?php $tmp_path_length = floor(strlen($r_v->path) / 2); ?>
+                                        @for(;$tmp_path_length > 0; $tmp_path_length--)
+                                            &sim;
+                                        @endfor
+                                        {{ $r_v->name }}
+                                    </option>
+                                @endforeach
                                 </optgroup>
                             </select>
                         </div>
@@ -45,7 +51,7 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-9">
-                        <button type="submit" class="btn btn-success">添加</button>
+                        <button id="json-add-role" type="submit" class="btn btn-success" data-url="/role/doAddRole">添加</button>
                         <button type="reset" class="btn">重置</button>
                     </div>
                 </form>
