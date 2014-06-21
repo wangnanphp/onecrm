@@ -4,32 +4,15 @@ class RegcodeController extends BaseController {
 
     public function showList()
     {
-        return View::make('regcode.list');
+        return View::make('users.list');
     }
 
 
     /**
-     * 添加注册码页面
-     */
-    public function addRegcode()
-    {
-        return View::make('regcodes.addRegcode');
-    }
-
-
-    /**
-     * 添加注册码类型和使用终端页面
-     */
-    public function addConfig()
-    {
-        return View::make('regcodes.addConfig');
-    }
-
-    /**
-     * 处理添加注册码类型
+     * 处理添加用户
      * @return json 处理结果
      */
-    public function doAddType()
+    public function doAdd()
     {
         $json_response = array('status' => -1, 'msg' => '未知错误！');
 
@@ -49,14 +32,5 @@ class RegcodeController extends BaseController {
 
 
         echo self::json_output($json_response);
-    }
-
-    /**
-     * 处理添加注册码使用平台
-     * @return json 处理结果
-     */
-    public function doAddPlatform()
-    {
-        echo json_encode(['status' => 0, 'msg' => 'platform']);
     }
 }

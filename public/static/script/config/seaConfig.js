@@ -7,16 +7,19 @@ seajs.config({
     base: 'http://www.onecrm.com/static/script/',
     // 别名
     alias: {
-        'jquery' : 'lib/jquery/1.8.2/jquery',
+        'jquery'     : 'lib/jquery/1.10.2/jquery-1.10.2.min',
+        'validation' : 'lib/jqueryvalidation/1.11.1/jquery.Validation.min'
     },
     // 路径
     paths: {
         'template' : 'http://www.onecrm.com/static/template/',
     },
     // 映射
-    'map': [
+    map: [
         [ /^(.*\.(?:css|js))(.*)$/i, '$1?version=' + random ]
-      ]
+    ],
+    // 预加载
+    // preload: ['jquery']
 });
 
 $(function() {
@@ -27,7 +30,14 @@ $(function() {
     switch( _module ){
         // 注册码模块
         case 'regcode':
-            seajs.use("module/regcode/init");
+            seajs.use('module/regcode/init');
+            break;
+        // 用户管理(员工管理)模块
+        case 'user':
+            // seajs.use('module/user/init');
+        // 角色管理(部门管理)模块
+        case 'role':
+            // seajs.use('module/role/init');
             break;
     }
 });

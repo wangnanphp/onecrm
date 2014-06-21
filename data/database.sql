@@ -71,7 +71,11 @@ CREATE TABLE `role`(
     `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,    -- 主键(ID)
     `pid` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,        -- 上级角色ID
     `name` VARCHAR(60) NOT NULL DEFAULT '',                -- 角色名
+    `path` VARCHAR(255) NOT NULL DEFAULT '',               -- 分类路径
     `description` VARCHAR(255) NOT NULL DEFAULT '',        -- 角色描述
+    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 添加时间
+    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 修改时间
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,            -- 软删除
     PRIMARY KEY(`id`),
     UNIQUE KEY(`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -88,6 +92,9 @@ CREATE TABLE `permission`(
     `controller` VARCHAR(30) NOT NULL DEFAULT '',          -- 控制器名
     `method` VARCHAR(30) NOT NULL DEFAULT '',              -- 方法名
     `description` VARCHAR(255) NOT NULL DEFAULT '',        -- 权限描述
+    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 添加时间
+    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 修改时间
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,            -- 软删除
     PRIMARY KEY(`id`),
     UNIQUE KEY(`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -102,6 +109,9 @@ CREATE TABLE `user_role`(
     `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,    -- 主键(ID)
     `user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,    -- FK-用户ID
     `role_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,    -- FK-角色ID
+    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 添加时间
+    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 修改时间
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,            -- 软删除
     PRIMARY KEY(`id`),
     UNIQUE KEY(`user_id`,`role_id`),
     KEY(`user_id`),
@@ -131,12 +141,13 @@ CREATE TABLE `role_permission`(
 --
 DROP TABLE IF EXISTS `regcode_type`;
 CREATE TABLE `regcode_type` (
-    `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,        -- 主键(ID)
-    `name` VARCHAR(50) NOT NULL DEFAULT '',                    -- 类别名称
-    `add_user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,    -- FK-添加用户ID
-    `add_time` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 添加时间
-    `del` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,              -- 是否被删除
-    `remark` VARCHAR(100) NOT NULL DEFAULT '',                 -- 备注
+    `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,    -- 主键(ID)
+    `name` VARCHAR(50) NOT NULL DEFAULT '',                -- 类别名称
+    `user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,    -- FK-添加用户ID
+    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 添加时间
+    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 修改时间
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,            -- 软删除
+    `remark` VARCHAR(100) NOT NULL DEFAULT '',             -- 备注
     PRIMARY KEY (`id`),
     UNIQUE KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -151,8 +162,9 @@ CREATE TABLE `regcode_platform` (
     `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,        -- 主键
     `name` VARCHAR(50) NOT NULL DEFAULT '',                    -- 类别名称
     `add_user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,    -- FK-添加用户ID
-    `add_time` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 添加时间
-    `del` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,              -- 是否被删除
+    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 添加时间
+    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 修改时间
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,                -- 软删除
     `remark` VARCHAR(255) NOT NULL DEFAULT '',                 -- 备注
     PRIMARY KEY (`id`),
     UNIQUE KEY (`name`)
@@ -195,7 +207,7 @@ CREATE TABLE `regcode` (
     `used` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,             -- FK-销售表ID
     `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 添加时间
     `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 修改时间
-    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 软删除
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,                -- 软删除
     `remark` VARCHAR(255) NOT NULL DEFAULT '',                 -- 备注
 =======
     `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,              -- 主键
@@ -211,7 +223,7 @@ CREATE TABLE `regcode` (
     `regcode_sell_id` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- FK-是否销售ID
     `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,           -- 添加时间
     `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,           -- 修改时间
-    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,           -- 软删除
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,                 -- 软删除
 >>>>>>> 5032d4b2e3992277719c6f833cb5a62fa5c53cc4
     PRIMARY KEY (`id`),
     UNIQUE KEY (`number`)
@@ -259,7 +271,7 @@ CREATE TABLE `goods` (
     `manufacture` VARCHAR(60) NOT NULL DEFAULT '',              -- 生产商
     `create_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 创建时间
     `update_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 修改时间
-    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,           -- 软删除
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,                 -- 软删除
     `remark` VARCHAR(255) NOT NULL DEFAULT '',                  -- 备注
     `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,            -- 状态
     PRIMARY KEY (`id`),
@@ -286,7 +298,7 @@ CREATE TABLE `goods_type` (
     `dscription` VARCHAR(255) NOT NULL DEFAULT '',         -- 描述
     `create_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,       -- 创建时间
     `update_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,       -- 修改时间
-    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 软删除
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,            -- 软删除
     `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,       -- 状态
     PRIMARY KEY (`id`),
     UNIQUE KEY(`name`),
@@ -313,7 +325,7 @@ CREATE TABLE `goods_stock` (
     `time` INT(10) UNSIGNED NOT NULL DEFAULT 0,                 -- 贮存时间
     `create_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 创建时间
     `update_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 修改时间
-    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,           -- 软删除
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,                 -- 软删除
     `remarke` VARCHAR(255) NOT NULL DEFAULT '',                 -- 备注信息
     `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,            -- 状态
     PRIMARY KEY (`id`),
@@ -352,7 +364,7 @@ CREATE TABLE `goods_sell` (
     `description` VARCHAR(100) NOT NULL DEFAULT '',                    -- 颜色的描述
     `create_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,                   -- 创建时间
     `update_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,                   -- 修改时间
-    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,                  -- 软删除
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,                        -- 软删除
     `remark` VARCHAR(255) NOT NULL DEFAULT '',                         -- 备注
     `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,                   -- 状态
     PRIMARY KEY (`id`),
@@ -399,7 +411,7 @@ CREATE TABLE `goods_buyer` (
     `address` VARCHAR(200) NOT NULL DEFAULT '',                  -- 地址
     `create_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,             -- 创建时间
     `update_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,             -- 修改时间
-    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 软删除
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,                  -- 软删除
     `remark` VARCHAR(255) NOT NULL DEFAULT '',                   -- 备注
     `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,             -- 状态
     PRIMARY KEY (`id`),
@@ -439,7 +451,7 @@ CREATE TABLE `goods_back` (
     `price` DECIMAL(10,2) NOT NULL DEFAULT 0,                    -- 退还价格
     `create_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,             -- 创建时间
     `update_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,             -- 修改时间
-    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 软删除
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,                  -- 软删除
     `remarke` VARCHAR(255) NOT NULL DEFAULT '',                  -- 备注信息
     `status` TINYINT(2) UNSIGNED NOT NULL DEFAULT 0,             -- 状态
     PRIMARY KEY (`id`),
@@ -476,7 +488,7 @@ CREATE TABLE `goods_barter` (
     `handled` VARCHAR(60) NOT NULL DEFAULT '',                    -- 换货经办人
     `create_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,              -- 创建时间
     `update_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,              -- 修改时间
-    `deleted_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,             -- 软删除
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,                   -- 软删除
     `remarke` VARCHAR(255) NOT NULL DEFAULT '',                   -- 备注信息
     `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,              -- 状态
     PRIMARY KEY (`id`),

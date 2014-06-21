@@ -562,10 +562,10 @@ dd {
   .dl-horizontal dd:after {
     content: " ";
     /* 1 */
-  
+
     display: table;
     /* 2 */
-  
+
   }
   .dl-horizontal dd:after {
     clear: both;
@@ -574,10 +574,10 @@ dd {
   .dl-horizontal dd:after {
     content: " ";
     /* 1 */
-  
+
     display: table;
     /* 2 */
-  
+
   }
   .dl-horizontal dd:after {
     clear: both;
@@ -6923,7 +6923,7 @@ a.list-group-item.active:focus .list-group-item-text {
   margin-right: 0;
 }
 lesshat-selector {
-  -lh-property: 0; } 
+  -lh-property: 0; }
 @-webkit-keyframes reloadingAnimation{ 0%{ -webkit-transform: rotate(0deg); } 100%{ -webkit-transform: rotate(360deg); }}
 @-moz-keyframes reloadingAnimation{ 0%{ -moz-transform: rotate(0deg); } 100%{ -moz-transform: rotate(360deg); }}
 @-o-keyframes reloadingAnimation{ 0%{ -o-transform: rotate(0deg); } 100%{ -o-transform: rotate(360deg); }}
@@ -13348,6 +13348,7 @@ canvas + .knob {
 .validate-has-error:focus {
   border-color: #cc2424;
 }
+.validate-has-error span.validate-has-error,
 .validate-has-error + span.validate-has-error,
 .validate-has-error > span.validate-has-error,
 .input-group + .validate-has-error {
@@ -14229,7 +14230,7 @@ blockquote.blockquote-danger small strong {
 		.rounded;
 		.transall;
 	}
-	
+
 	&:after {
 		content: '';
 		position: absolute;
@@ -14238,20 +14239,20 @@ blockquote.blockquote-danger small strong {
 		background: @default;
 		left: 1px;
 		top: 8px;
-		
+
 		left: -20px;
 		top: 1px;
-		
+
 		.size(@s - 2, @s - 3);
 		opacity: 0;
 		.rounded;
 		.transition(~"250ms all cubic-bezier(0.455, 0.030, 0.515, 0.955)");
 	}
-	
+
 	> .chk-replaced {
-		
+
 	}
-	
+
 	input[type="checkbox"],
 	input[type="radio"] {
 		visibility: visible;
@@ -14261,28 +14262,28 @@ blockquote.blockquote-danger small strong {
 		top: 0;
 		margin-left: 0;
 		.size(@s);
-		
+
 		&:checked + label:after {
 			opacity: 1;
 		}
-		
+
 		&:disabled {
-			
+
 			+ label {
-				
+
 				&:before {
 					opacity: 0.3;
 				}
-				
+
 				&:after {
 					opacity: 0;
 				}
 			}
-			
+
 			&:checked {
-				
+
 				+ label {
-					
+
 					&:after {
 						opacity: 1;
 					}
@@ -14290,37 +14291,37 @@ blockquote.blockquote-danger small strong {
 			}
 		}
 	}
-	
+
 	label {
 		position: relative;
-		
-		
+
+
 	}
-	
+
 	&:hover {
-		
+
 		label {
-			
+
 			&:before {
 				.box-shadow(~"0 0 0 2px rgba(0,0,0,.03)");
 			}
 		}
 	}
-	
+
 	&:hover input[type="checkbox"]:disabled + label:before {
 		.box-shadow(none);
 	}
-	
-	
+
+
 	// Radio
 	&.radio-replace {
-		
+
 		label {
-			
+
 			&:before {
 				.border-radius(50%);
 			}
-			
+
 			&:after {
 				.border-radius(50%);
 				height: @s - 2;
@@ -14328,11 +14329,11 @@ blockquote.blockquote-danger small strong {
 			}
 		}
 	}
-	
-	
+
+
 	// Skins
 	.replaced-checkbox-variant(darken(@default, 10%); #fff);
-	
+
 	&.color-primary { .replaced-checkbox-variant(@main_color; @secondary_text); }
 	&.color-red { .replaced-checkbox-variant(@secondary; @secondary_text); }
 	&.color-blue { .replaced-checkbox-variant(@info; @info_text); }
@@ -14343,26 +14344,26 @@ blockquote.blockquote-danger small strong {
 .replaced-checkbox-variant(@color-1; @color-2)
 {
 	label {
-	
+
 		&:before {
 			border-color: @color-1;
 		}
-		
+
 		&:after {
 			border-color: @color-2;
 			background-color: @color-1;
 		}
 	}
-	
+
 	&:hover {
-		
+
 		label {
-			
+
 			&:before {
 				@r: red(@color-1);
 				@g: green(@color-1);
 				@b: blue(@color-1);
-				
+
 				.box-shadow(~"0 0 0 2px rgba(@{r},@{g},@{b},.1)");
 			}
 		}
@@ -19908,7 +19909,7 @@ fieldset[disabled] .calendar-env .calendar-body .fc-content .fc-view table tbody
   float: left;
 }
 @media (max-width: 999px) {
-  
+
 }
 @media (max-width: 959px) {
   .calendar-env .calendar-body .calendar-header div.calendar-title {
@@ -19982,7 +19983,7 @@ fieldset[disabled] .calendar-env .calendar-body .fc-content .fc-view table tbody
   }
 }
 @media (max-width: 449px) {
-  
+
 }
 .draggable-portlets .sorted {
   min-height: 100px;

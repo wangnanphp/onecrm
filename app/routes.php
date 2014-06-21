@@ -11,32 +11,52 @@
 |
 */
 
+Route::get('test', 'RoleController@getAllRoles');
+
 Route::get('/', function()
 {
 	return View::make('index.index');
 });
 
-Route::get('/regcode', 'RegcodeController@showList');
-Route::get('/regcode/addRegcode', 'RegcodeController@addRegcode');
-Route::get('/regcode/addConfig', function()
+/* Regcode S */
+Route::get('regcode', 'RegcodeController@showList');
+Route::get('regcode/addRegcode', 'RegcodeController@addRegcode');
+Route::get('regcode/addConfig', function()
 {
-    return View::make('regcode.addConfig');
+    return View::make('regcodes.addConfig');
 });
-Route::post('/regcode/doAddType', 'RegcodeController@doAddType');
+Route::post('regcode/doAddType', 'RegcodeController@doAddType');
 Route::post('/regcode/doAddPlatform', 'RegcodeController@doAddPlatform');
+/* Regcode E */
+
+/* User S */
+// 添加用户
+Route::get('/user/add', function()
+{
+    return View::make('users.addUser');
+});
+/* User E */
+
+/* Role S */
+// 添加角色(部门)
+Route::get('/role/add', function()
+{
+    return View::make('roles.addRole');
+});
+/* Role E */
 
 
 /*
 *  liuxiaowei
 */
 
-Route::get('/entity/index', 'EntityController@index');
-Route::get('/entity/search', 'EntityController@search');
-Route::get('/entity/addEntity', 'EntityController@addEntity');
+Route::get('/goods/index', 'GoodsController@index');
+Route::get('/goods/search', 'GoodsController@search');
+Route::get('/goods/addGoods', 'GoodsController@addGoods');
 
 /*
-Route::get('/entity/index', function()
+Route::get('/goods/index', function()
 {
-    return View::make('entity.index');
+    return View::make('goods.index');
 });
 */

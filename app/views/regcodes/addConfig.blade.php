@@ -23,15 +23,15 @@
                         <div class="panel-body">
                             <form id="add-type-form" class="validate form-horizontal form-groups-bordered">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="type_name">注册码类型名</label>
+                                    <label class="col-sm-2 control-label" for="name">注册码类型名</label>
                                     <div class="col-sm-9">
-                                        <input id="regcode-type" class="form-control" type="text" name="type_name" data-validate="required" data-message-required="亲，注册码类型必须写哦！" placeholder="必须" />
+                                        <input id="regcode-type" class="form-control" type="text" name="name" data-validate="required" data-message-required="亲，注册码类型必须写哦！" placeholder="必须" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="remark">类型描述</label>
                                     <div class="col-sm-9">
-                                        <textarea id="field-ta" class="form-control autogrow" name="remark" placeholder="描述信息可不写"></textarea>
+                                        <textarea id="t-remark" class="form-control autogrow" name="remark" placeholder="描述信息可不写"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-9">
@@ -62,7 +62,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="remark">平台描述</label>
                                     <div class="col-sm-9">
-                                        <textarea id="field-ta" class="form-control autogrow" placeholder="描述信息可不写"></textarea>
+                                        <textarea id="p-remark" class="form-control autogrow" placeholder="描述信息可不写"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-9">
