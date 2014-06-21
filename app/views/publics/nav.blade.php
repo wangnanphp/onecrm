@@ -132,7 +132,7 @@
             <ul>
                 <li><a href="../../../neon-x/dashboard/main/index.html"><i class="entypo-home"></i><span>员工管理</span></a>
                     <ul class="opened active">
-                        <li><a href=""><i class="entypo-compass"></i><span>员工账户设置</span></a></li>
+                        <li><a href=""><i class="entypo-users"></i><span>员工账户设置</span></a></li>
                         <li><a href="/user/add"><i class="entypo-user-add"></i><span>添加新员工</span></a></li>
                     </ul>
                 </li>
@@ -140,6 +140,12 @@
                     <ul>
                         <li><a href="/role/addRegcode"><i class="entypo-cog"></i><span>部门设置</span></a></li>
                         <li><a href="/role/add"><i class="entypo-flow-cascade"></i><span>添加部门</span></a></li>
+                    </ul>
+                </li>
+                <li class="active"><a href="/role"><i class="entypo-flow-tree"></i><span>销售平台</span></a>
+                    <ul>
+                        <li><a href="/role/addRegcode"><i class="entypo-compass"></i><span>平台设置</span></a></li>
+                        <li><a href="/system/addPlatform"><i class="entypo-plus"></i><span>添加平台</span></a></li>
                     </ul>
                 </li>
             </ul>

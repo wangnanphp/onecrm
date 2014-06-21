@@ -37,7 +37,11 @@ $(function() {
             // seajs.use('module/user/init');
         // 角色管理(部门管理)模块
         case 'role':
-            // seajs.use('module/role/init');
+            seajs.use('module/role/init');
+            break;
+        // 系统设置模块
+        case 'system':
+            seajs.use('module/system/init');
             break;
     }
 });
