@@ -34,7 +34,7 @@ $(function() {
             break;
         // 用户管理(员工管理)模块
         case 'user':
-            // seajs.use('module/user/init');
+            seajs.use('module/user/init');
         // 角色管理(部门管理)模块
         case 'role':
             seajs.use('module/role/init');

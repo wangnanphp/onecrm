@@ -35,6 +35,8 @@ Route::get('user/add', function()
 {
     return View::make('users.addUser');
 });
+// 执行添加用户
+Route::post('user/doAddUser', 'UserController@doAddUser');
 /* User E */
 
 /* Role S */

@@ -79,3 +79,6 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+// 引入自己的帮助函数库
+require app_path().'/libraries/functions/helper.php';

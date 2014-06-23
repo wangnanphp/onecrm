@@ -17,5 +17,5 @@ define(function(require, explode) {
             }, 'json');
             return false;
         });
-    }
+    };
 });

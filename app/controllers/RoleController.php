@@ -49,6 +49,6 @@ class RoleController extends BaseController {
             $json_reponse = ['status' => 0, 'msg' => '新部门添加成功！'];
         }
 
-        self::json_output($json_reponse);
+        json_output($json_reponse);
     }
 }

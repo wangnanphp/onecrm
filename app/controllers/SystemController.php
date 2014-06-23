@@ -24,7 +24,7 @@ class SystemController extends BaseController {
             $json_response = array('status' => 0, 'msg' => '新销售平台添加成功！');
         }
 
-        self::json_output($json_response);
+        json_output($json_response);
     }
 
 
@@ -61,6 +61,6 @@ class SystemController extends BaseController {
             $json_reponse = ['status' => 0, 'msg' => '新部门添加成功！'];
         }
 
-        self::json_output($json_reponse);
+        json_output($json_reponse);
     }
 }

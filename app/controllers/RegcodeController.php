@@ -47,7 +47,7 @@ class RegcodeController extends BaseController {
             $json_response = array('status' => 0, 'msg' => '注册码类型添加成功！');
         }
 
-        self::json_output($json_response);
+        json_output($json_response);
     }
 
     /**
@@ -56,6 +56,6 @@ class RegcodeController extends BaseController {
      */
     public function doAddPlatform()
     {
-        echo json_encode(['status' => 0, 'msg' => 'platform']);
+        json_output(['status' => 0, 'msg' => 'platform']);
     }
 }
