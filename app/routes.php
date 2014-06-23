@@ -61,11 +61,13 @@ Route::post('system/doAddPlatform', 'SystemController@doAddPlatform');
 *  liuxiaowei
 */
 
-Route::get('/entity/index', 'EntityController@index');
+Route::get('/goods/index', 'GoodsController@index');
+Route::get('/goods/search', 'GoodsController@search');
+Route::get('/goods/addGoods', 'GoodsController@addGoods');
 
 /*
-Route::get('/entity/index', function()
+Route::get('/goods/index', function()
 {
-    return View::make('entity.index');
+    return View::make('goods.index');
 });
 */
