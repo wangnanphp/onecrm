@@ -55,10 +55,14 @@ CREATE TABLE `user`(
     `ww` VARCHAR(20) NOT NULL DEFAULT '',                     -- 旺旺
     `work` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,            -- 工作(0在职,1离职)
     `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,          -- 状态(0正常,1锁定)
+    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,         -- 添加时间
+    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,         -- 修改时间
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,               -- 软删除
     PRIMARY KEY(`id`),
     UNIQUE KEY(`login_email`),
     UNIQUE KEY(`login_name`),
-    UNIQUE KEY(`nickname`)
+    UNIQUE KEY(`nickname`),
+    UNIQUE KEY(`idcards`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 

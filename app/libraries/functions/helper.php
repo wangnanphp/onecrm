@@ -9,7 +9,9 @@ if( ! function_exists('P') )
      */
     function P($data)
     {
+        echo '<pre>';
         print_r($data);
+        echo '</pre>';
     }
 }
 

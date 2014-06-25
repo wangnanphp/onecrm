@@ -37,6 +37,10 @@ Route::get('user/add', function()
 });
 // 执行添加用户
 Route::post('user/doAddUser', 'UserController@doAddUser');
+Route::post('user/addUserError', function()
+{
+    View::make('users/addUserError');
+});
 /* User E */
 
 /* Role S */
