@@ -22,6 +22,6 @@
             </tbody>
         </table>
     </div>
-    <div class="col-md-12"><button type="button" class="btn btn-primary btn-block">点我返回</button></div>
+    <div class="col-md-12"><a href="javascript:window.history.back();" class="btn btn-primary btn-block">点我返回</a></div>
 </div>
 @endsection

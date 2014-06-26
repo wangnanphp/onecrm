@@ -30,17 +30,19 @@ Route::post('regcode/doAddPlatform', 'RegcodeController@doAddPlatform');
 /* Regcode E */
 
 /* User S */
+Route::controller('user', 'UserController');
 // 添加用户
-Route::get('user/add', function()
-{
-    return View::make('users.addUser');
-});
+// Route::get('user/userList', 'UserController@userList');
+// Route::get('user/add', function()
+// {
+//     return View::make('users.addUser');
+// });
 // 执行添加用户
-Route::post('user/doAddUser', 'UserController@doAddUser');
-Route::post('user/addUserError', function()
-{
-    View::make('users/addUserError');
-});
+// Route::post('user/doAddUser', 'UserController@doAddUser');
+// Route::post('user/addUserError', function()
+// {
+//     View::make('users/addUserError');
+// });
 /* User E */
 
 /* Role S */

@@ -2,9 +2,15 @@
 
 class UserController extends BaseController {
 
-    public function showList()
+    public function getList()
     {
-        return View::make('users.list');
+        $users = User::paginate(5);
+        return View::make('users.userList')->with('users', $users);
+    }
+
+    public function getAddUser()
+    {
+        return View::make('users.addUser');
     }
 
 
@@ -12,7 +18,7 @@ class UserController extends BaseController {
      * 处理添加用户
      * @return json 处理结果
      */
-    public function doAddUser()
+    public function postAddUser()
     {
         // 创建ORM
         $user = new User();
@@ -23,9 +29,9 @@ class UserController extends BaseController {
         $rules = array(
             'login_email' => 'required | email | unique:user',
             'password'    => 'required | min:6 | confirmed:repassword',
-            'idcards'     => 'required',
+            'idcards'     => 'unique:user',
         );
-        // // 验证提示消息
+        // 验证提示消息
         $messages = array(
             'login_email.required' => '登陆邮箱不能为空！',
             'login_email.email'    => '登陆邮箱地址不正确！',
@@ -33,7 +39,7 @@ class UserController extends BaseController {
             'password.required'    => '密码不能为空！',
             'password.min'         => '密码长度不能少于6位！',
             'password.confirmed'   => '两次输入密码不一致！',
-            'idcards.require'      => '身份证号码重复！',
+            'idcards.required'      => '身份证号码重复！',
         );
         // 进行验证
         $validator = Validator::make($inputs, $rules, $messages);
@@ -71,7 +77,7 @@ class UserController extends BaseController {
         $user->password    = Hash::make($inputs['password']);
         $user->realname    = $inputs['realname'];
         $user->idcards     = $inputs['idcards'];
-        if( isset($inputs['work']) && 'on' === $inputs['work'])
+        if( isset($inputs['work']) && 'on' === $inputs['work'] )
         {
             $user->work = 1;
         }
@@ -79,10 +85,13 @@ class UserController extends BaseController {
         {
             $user->status = 1;
         }
-        P($user);
+
+        $user->save();
+    }
 
 
+    public function checkWork()
+    {
 
-        P($user->save());
     }
 }

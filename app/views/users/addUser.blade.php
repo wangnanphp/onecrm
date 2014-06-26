@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="panel-body">
-                <form id="add-user" class="validate form-horizontal form-groups-bordered" role="form"  action="/user/doAddUser" method="post" enctype="multipart/form-data">
+                <form id="add-user" class="validate form-horizontal form-groups-bordered" role="form"  action="/user/add-user" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="login_email">登陆E-mail</label>
                         <div class="col-sm-9">
@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-9">
-                        <button id="form-add-user" type="submit" class="btn btn-success" data-url="/user/doAddUser">提交</button>
+                        <button id="form-add-user" type="submit" class="btn btn-success" data-url="/user/add-user">提交</button>
                         <button type="reset" class="btn">重置</button>
                     </div>
                 </form>
