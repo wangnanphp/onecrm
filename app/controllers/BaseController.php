@@ -18,7 +18,6 @@ class BaseController extends Controller {
 
     public function missingMethod($parameters = array())
     {
-        P($parameters);
-        echo '您访问的控制器方法不存在！';
+        return View::make('publics.404');
     }
 }
