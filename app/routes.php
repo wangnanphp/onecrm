@@ -10,7 +10,6 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
 Route::get('test', 'RoleController@getAllRoles');
 
 Route::get('/', function()
@@ -66,14 +65,24 @@ Route::post('system/doAddPlatform', 'SystemController@doAddPlatform');
 /*
 *  liuxiaowei
 */
-
-Route::get('/goods/index', 'GoodsController@index');
+//商品管理
+Route::get('/goods', 'GoodsController@index');
 Route::get('/goods/search', 'GoodsController@search');
 Route::get('/goods/addGoods', 'GoodsController@addGoods');
 
-/*
-Route::get('/goods/index', function()
-{
-    return View::make('goods.index');
-});
-*/
+//商品分类
+Route::get('/goodstype', 'GoodstypeController@index');
+Route::get('/goodstype/add', 'GoodstypeController@add');
+Route::get('/goodstype/doAddType', 'GoodstypeController@doAddType');
+
+//商品库存
+Route::get('/goodstock', 'GoodstockController@index');
+Route::get('/goodstock/addStock', 'GoodstockController@addStock');
+Route::get('/goodstock/doAddStock', 'GoodstockController@doAddStock');
+
+//销售的商品
+Route::get('/goodsell', 'GoodsellController@index');
+Route::get('/goodsell/addSell', 'GoodsellController@addSell');
+Route::get('/goodsell/doAddSell', 'GoodsellController@doAddSell');
+
+

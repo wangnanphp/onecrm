@@ -53,34 +53,35 @@
         </li>
 
         {{-- 实物管理 S --}}
-        <li>
+        <li class="opened active">
              <a href=""> <i class="entypo-mail"></i><span>实体货物管理</span></a>
             <ul>
-            <li> <a href="/entity/search"><i class="entypo-inbox"></i><span>快速查询</span></a></li>
+            <li> <a href="/goods/search"><i class="entypo-inbox"></i><span>快速查询</span></a></li>
             <li> <a href=""><i class="entypo-plus-squared"></i><span>实物管理</span></a>
                 <ul>
-                  <li> <a href="/entity/index"><i class="entypo-plus-squared"></i><span>浏览实物</span></a> </li>
-                  <li> <a href="/entity/addEntity"><i class="entypo-list-add"></i></i><span>添加实物</span></a> </li>
+                  <li> <a href="/goods"><i class="entypo-plus-squared"></i><span>浏览实物</span></a> </li>
+                  <li> <a href="/goods/addGoods"><i class="entypo-list-add"></i></i><span>添加实物</span></a> </li>
                 </ul>
             </li>
-            <li> <a href=""><i class="entypo-plus-squared"></i><span>实物类别管理</span></a>
+            <li> <a href=""><i class="entypo-plus-squared"></i><span>实物分类管理</span></a>
                  <ul>
-                    <li> <a href=""><i class="entypo-plus-squared"></i><span>浏览分类</span></a> </li>
-                    <li> <a href=""><i class="entypo-list-add"></i><span>添加分类</span></a> </li>
+                    <li> <a href="/goodstype"><i class="entypo-plus-squared"></i><span>浏览分类</span></a> </li>
+                    <li> <a href="/goodstype/add"><i class="entypo-list-add"></i><span>添加分类</span></a> </li>
+                  </ul>
+            </li>
+            <li><a href="/goodstock"><i class="entypo-doc-text"></i><span>实物库存管理</span></a>
+                 <ul>
+                    <li> <a href="/goodstock"><i class="entypo-plus-squared"></i><span>浏览库存</span></a> </li>
+                    <li> <a href="/goodstock/addStock"><i class="entypo-list-add"></i><span>添加实物</span></a> </li>
                   </ul>
             </li>
             <li> <a href=""><i class="entypo-attach"></i><span>实物销售管理</span></a>
                   <ul>
-                    <li> <a href=""><i class="entypo-plus-squared"></i><span>浏览销售实物</span></a> </li>
-                    <li> <a href=""><i class="entypo-list-add"></i><span>添加分类</span></a> </li>
+                    <li> <a href=""><i class="entypo-plus-squared"></i><span>浏览销售商品</span></a> </li>
+                    <li> <a href=""><i class="entypo-list-add"></i><span>添加售出商品</span></a> </li>
                   </ul>
             </li>
-            <li><a href=""><i class="entypo-doc-text"></i><span>实物贮存管理</span></a>
-                 <ul>
-                    <li> <a href=""><i class="entypo-plus-squared"></i><span>浏览贮存实物</span></a> </li>
-                    <li> <a href=""><i class="entypo-list-add"></i><span>添加实物</span></a> </li>
-                  </ul>
-            </li>
+
             <li><a href=""><i class="entypo-doc-text"></i><span>实物退货管理</span></a>
                  <ul>
                     <li> <a href=""><i class="entypo-plus-squared"></i><span>浏览退货实物</span></a> </li>
