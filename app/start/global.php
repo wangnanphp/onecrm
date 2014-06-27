@@ -67,6 +67,16 @@ App::down(function()
 	return Response::make("Be right back!", 503);
 });
 
+
+/**
+ * 路由404错误，显示404页面
+ */
+App::missing(function($exctption)
+{
+    return Response::view('publics.404');
+});
+
+
 /*
 |--------------------------------------------------------------------------
 | Require The Filters File
