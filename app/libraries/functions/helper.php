@@ -47,18 +47,25 @@ if( ! function_exists('array_trim') )
 {
     /**
      * 去除数组中元素的两边空白符
-     * @param  array $data     需要去除两边空白的数组
+     * @param  mixed $data     需要去除两边空白的数组或字符串
      * @param  array $exclude  需要排除的元素键值
      * @return array           处理好的数组
      */
     function array_trim($data, $exclude = array())
     {
-        foreach($data as $k => &$v)
+        if( is_array($data) )
         {
-            if( ! in_array($k, $exclude) )  // 排除制定键值的元素
+            foreach($data as $k => &$v)
             {
-                $v = trim($v);
+                if( ! in_array($k, $exclude) )  // 排除制定键值的元素
+                {
+                    $v = trim($v);
+                }
             }
+        }
+        elseif( is_string($data) )
+        {
+            $data = trim($data);
         }
 
         return $data;
