@@ -19,47 +19,38 @@ Route::get('/', function()
 });
 
 /* Regcode S */
-Route::get('regcode', 'RegcodeController@showList');
-Route::get('regcode/addRegcode', 'RegcodeController@addRegcode');
-Route::get('regcode/addConfig', function()
-{
-    return View::make('regcodes.addConfig');
-});
-Route::post('regcode/doAddType', 'RegcodeController@doAddType');
-Route::post('regcode/doAddPlatform', 'RegcodeController@doAddPlatform');
+Route::controller('regcode', 'RegcodeController');
+// Route::get('regcode', 'RegcodeController@showList');
+// Route::get('regcode/addRegcode', 'RegcodeController@addRegcode');
+// Route::get('regcode/addConfig', function()
+// {
+//     return View::make('regcodes.addConfig');
+// });
+// Route::post('regcode/doAddType', 'RegcodeController@doAddType');
+// Route::post('regcode/doAddPlatform', 'RegcodeController@doAddPlatform');
 /* Regcode E */
 
 /* User S */
 Route::controller('user', 'UserController');
-// 添加用户
-// Route::get('user/userList', 'UserController@userList');
-// Route::get('user/add', function()
-// {
-//     return View::make('users.addUser');
-// });
-// 执行添加用户
-// Route::post('user/doAddUser', 'UserController@doAddUser');
-// Route::post('user/addUserError', function()
-// {
-//     View::make('users/addUserError');
-// });
 /* User E */
 
 /* Role S */
 // 添加角色(部门)页面
-Route::get('role/add', 'RoleController@add');
-// 执行添加角色(角色)
-Route::post('role/doAddRole', 'RoleController@doAddRole');
+Route::controller('role', 'RoleController');
+// Route::get('role/add', 'RoleController@add');
+// // 执行添加角色(角色)
+// Route::post('role/doAddRole', 'RoleController@doAddRole');
 /* Role E */
 
 /* System S */
-// 添加销售平台页面
-Route::get('system/addPlatform', function()
-{
-    return View::make('systems.addPlatform');
-});
-// 执行添加平台信息
-Route::post('system/doAddPlatform', 'SystemController@doAddPlatform');
+Route::controller('system', 'SystemController');
+// // 添加销售平台页面
+// Route::get('system/addPlatform', function()
+// {
+//     return View::make('systems.addPlatform');
+// });
+// // 执行添加平台信息
+// Route::post('system/doAddPlatform', 'SystemController@doAddPlatform');
 /* System E */
 
 
