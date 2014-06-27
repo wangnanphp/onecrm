@@ -8,7 +8,7 @@
 
             <div class="panel-heading">
                 <div class="panel-title">
-                  添加销售的产品
+                  库存添加商品
                 </div>
 
                 <div class="panel-options">
@@ -55,42 +55,26 @@
                     </div>
 
                      <div class="form-group">
-                        <label for="field-4" class="col-sm-3 control-label">品牌</label>
+                        <label for="field-4" class="col-sm-3 control-label">库存数量</label>
 
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="field-4" name="brand" placeholder="商品的品牌">
+                            <input type="text" class="form-control" id="field-4" name="brand" placeholder="库存数量">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="field-4" class="col-sm-3 control-label">成本价</label>
+                        <label for="field-4" class="col-sm-3 control-label">库存地址</label>
 
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="field-4" name="cost_price" placeholder="商品的成本价">
+                            <input type="text" class="form-control" id="field-4" name="cost_price" placeholder="库存地址">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="field-5" class="col-sm-3 control-label">销售价</label>
+                        <label for="field-5" class="col-sm-3 control-label">入库时间</label>
 
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="field-5" name="sales_price" placeholder="商品的销售价格">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="field-6" class="col-sm-3 control-label">商品来源</label>
-
-                        <div class="col-sm-5">
-                            <input type="text" class="form-control" id="field-6" name="origin" placeholder="商品的来源">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="field-6" class="col-sm-3 control-label">生产商</label>
-
-                        <div class="col-sm-5">
-                            <input type="text" class="form-control" id="field-6" name="manufacture" placeholder="商品的生成商">
+                            <input type="text" class="form-control" id="field-5" name="sales_price" placeholder="入库时间">
                         </div>
                     </div>
 

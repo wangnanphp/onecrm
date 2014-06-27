@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h3>销售商品管理</h3>
+<h3>浏览库存商品</h3>
 
 <table class="table table-bordered table-striped datatable" id="table-2">
     <thead>
@@ -12,19 +12,13 @@
                     <input type="checkbox" id="chk-1">
                 </div>
             </th>
+            <th>添加人</th>
+            <th>所属类别</th>
             <th>商品名</th>
-            <th>添加者</th>
-            <th>购买人姓名</th>
-            <th>销售平台名称</th>
-            <th>销售时间</th>
-            <th>销售价格</th>
-            <th>销售数量</th>
-            <th>订单号</th>
-            <th>是否是刷票</th>
-            <th>颜色</th>
-            <th>颜色的描述</th>
-            <th>创建时间</th>
-            <th>备注</th>
+            <th>库存数量</th>
+            <th>操作人</th>
+            <th>地址</th>
+            <th>添加时间</th>
             <th>状态</th>
             <th>操作</th>
         </tr>
@@ -37,16 +31,13 @@
                     <input type="checkbox" id="chk-1">
                 </div>
             </td>
-            <td>刘晓威添加</td>
-            <td>汽车类</td>
-            <td>沃尔沃s60</td>
-            <td>沃尔沃</td>
-            <td>20W</td>
-            <td>28W</td>
-            <td>瑞典</td>
-            <td>国产</td>
-            <td>2014-6-26</td>
-            <td>沃尔沃豪华轿车</td>
+            <td>晓威</td>
+            <td>日用品类</td>
+            <td>毛巾</td>
+            <td>2014件</td>
+            <td>晓威刘</td>
+            <td>北京</td>
+            <td>2014-6-25</td>
             <td>开启</td>
             <td>
                 <a href="#" class="btn btn-default btn-sm btn-icon icon-left">
@@ -61,14 +52,14 @@
 
                 <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
                     <i class="entypo-info"></i>
-                    Profile
+                    查看详情
                 </a>
             </td>
         </tr>
 
     </tbody>
 </table>
-<a href="/goods/addGoods" class="btn btn-primary">
+<a href="/goodstock/addStock" class="btn btn-primary">
     <i class="entypo-plus"></i>
     添加商品
 </a>

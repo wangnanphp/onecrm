@@ -2,12 +2,21 @@
 
 class UserController extends BaseController {
 
+    /**
+     * 获取用户列表
+     * @return [type] [description]
+     */
     public function getList()
     {
         $users = User::paginate(5);
         return View::make('users.userList')->with('users', $users);
     }
 
+
+    /**
+     * 添加用户页面
+     * @return [type] [description]
+     */
     public function getAddUser()
     {
         return View::make('users.addUser');
@@ -15,7 +24,7 @@ class UserController extends BaseController {
 
 
     /**
-     * 处理添加用户
+     * 执行添加用户
      * @return json 处理结果
      */
     public function postAddUser()
@@ -39,7 +48,7 @@ class UserController extends BaseController {
             'password.required'    => '密码不能为空！',
             'password.min'         => '密码长度不能少于6位！',
             'password.confirmed'   => '两次输入密码不一致！',
-            'idcards.required'      => '身份证号码重复！',
+            'idcards.unique'      => '身份证号码重复！',
         );
         // 进行验证
         $validator = Validator::make($inputs, $rules, $messages);
@@ -73,25 +82,57 @@ class UserController extends BaseController {
 
         $user->login_email = $inputs['login_email'];
         $user->login_name  = explode('@', $inputs['login_email'])[0];
-        $user->nickname   = $user->login_name;
+        $user->nickname    = $user->login_name;
         $user->password    = Hash::make($inputs['password']);
         $user->realname    = $inputs['realname'];
         $user->idcards     = $inputs['idcards'];
-        if( isset($inputs['work']) && 'on' === $inputs['work'] )
+        if( ! isset($inputs['work']) || 'on' != $inputs['work'] )
         {
             $user->work = 1;
         }
-        if( isset($inputs['status']) && 'on' === $inputs['status'])
+        if( ! isset($inputs['status']) || 'on' != $inputs['status'])
         {
             $user->status = 1;
         }
 
-        $user->save();
+        if( false === $user->save() )
+        {
+            return View::make('users/addUserError')->with(['errorMsg' =>'数据库操作失败！']);
+        }
+        else
+        {
+            return View::make('publics/addFormSuccess')->with(['url' => '/user/add-user', 'successMsg' =>'添加新用户成功！']);
+        }
     }
 
 
-    public function checkWork()
+    /**
+     * 更改用户的模式（是否在职/状态）
+     * @return [type] [description]
+     */
+    public function postChangeMode()
     {
+        $json_response = ['status' => 1, 'msg' => '请通过正常途径修改信息！'];
 
+        $inputs = array_trim(Input::only('id', 'mode'));
+
+        // 数据验证
+        $validator = Validator::make($inputs, ['id' => 'required | integer | exists:user,id', 'mode' => 'required | in:work,status']);
+        if( $validator->passes() )  // 验证通过
+        {
+            $array_mode = [1, 0];
+            $user = User::find($inputs['id']);
+            $user->$inputs['mode'] = $array_mode[$user->$inputs['mode']];
+            if( false === $user->save() )
+            {
+                $json_response = ['status' => 2, 'value' => $user->$inputs['mode'], 'msg' => '修改数据失败！'];
+            }
+            else
+            {
+                $json_response = ['status' => 0, 'value' => $user->$inputs['mode'], 'msg' => '修改成功！'];
+            }
+        }
+// P(DB::getQueryLog());
+        json_output($json_response);
     }
 }

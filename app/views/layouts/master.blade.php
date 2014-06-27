@@ -39,7 +39,7 @@
             {{-- Header E --}}
 
             {{-- breadcrumb S --}}
-            @include('publics.breadcrumb')
+            {{-- @include('publics.breadcrumb') --}}
             {{-- breadcrumb E --}}
 
             {{-- content S --}}
