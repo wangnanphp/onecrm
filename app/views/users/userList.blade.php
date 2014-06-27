@@ -24,14 +24,14 @@
                     <td>{{ $u_v->phone }}</td>
                     <td>{{ $u_v->last_login_time }}</td>
                     <td>{{ $u_v->last_login_ip }}</td>
-                    <td>{{-- $u_v->work --}}
-                        <div class="make-switch switch-small" data-text-label="<i class='entypo-user'></i>">
-                                <input type="checkbox" name="work" checked />
+                    <td>
+                        <div class="checkbox checkbox-replace color-green">
+                            <input class="mode" type="checkbox" data-mode="work" @if( 0 === $u_v->work ) checked @endif />
                         </div>
                     </td>
-                    <td>{{-- $u_v->status --}}
-                        <div class="make-switch switch-small" data-on-label="<i class='entypo-lock-open'></i>" data-off-label="<i class='entypo-lock'></i>" data-on="success" data-off="danger">
-                                <input name="status" type="checkbox" checked />
+                    <td>
+                        <div class="checkbox checkbox-replace color-red">
+                            <input class="mode" type="checkbox" data-mode="status" @if( 0 === $u_v->status ) checked @endif>
                         </div>
                     </td>
                     <td class="center">
