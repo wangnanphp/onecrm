@@ -53,7 +53,7 @@ if( ! function_exists('array_trim') )
      */
     function array_trim($data, $exclude = array())
     {
-        if( is_array($data) )
+        if( is_array($data) )   // 为数组
         {
             foreach($data as $k => &$v)
             {
@@ -63,7 +63,7 @@ if( ! function_exists('array_trim') )
                 }
             }
         }
-        elseif( is_string($data) )
+        elseif( is_string($data) )    // 为字符串
         {
             $data = trim($data);
         }
