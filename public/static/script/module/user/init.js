@@ -10,7 +10,10 @@ define(function(require, explode) {
             break;
         case 'user-list':
             var userList = require('module/user/method/userList');
+            // 修改 是否在职 和 状态 模式
             userList.changeMode();
+            // 删除用户
+            userList.deleteUser();
             break;
     }
 });

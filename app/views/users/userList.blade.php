@@ -37,7 +37,7 @@
                     <td class="center">
                         <button type="button" class="btn btn-info btn-xs"> <i class="entypo-eye"></i> </button>
                         <button type="button" class="btn btn-gold btn-xs"> <i class="entypo-pencil"></i> </button>
-                        <button type="button" class="btn btn-danger btn-xs"> <i class="entypo-cancel"></i> </button>
+                        <button type="button" class="btn btn-danger btn-xs delete-user"> <i class="entypo-cancel"></i> </button>
                     </td>
                 </tr>
             @endforeach

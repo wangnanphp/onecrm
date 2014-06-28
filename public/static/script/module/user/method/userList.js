@@ -13,21 +13,6 @@ define(function (require, explode) {
             var mode = $(this).attr('data-mode');
             // $(this).trigger('click');exit;
 
-// var oDiv = $(this).parents('div.checkbox-replace');
-// var sDivClassAttr = oDiv.attr('class');
-// alert(oDiv);
-// alert(sDivClassAttr);
-// if( sDivClassAttr.length > 60 ) {
-//     alert('aaaa');
-//     classAttr = sDivClassAttr.substr(0, 54);
-// }else {
-//     alert('bbbb');
-//     classAttr = sDivClassAttr + ' checked';
-// }
-// oDiv.attr('class', classAttr);
-// alert(classAttr);
-// return;
-
             $.post('/user/change-mode', {'id' : id, 'mode' : mode}, function(data) {
                 var arrChecked = ['checked', ''];
                 if( 0 === data.status ) {
@@ -48,6 +33,13 @@ define(function (require, explode) {
             }, 'json');
         });
     };
-}
 
-);
+    // 删除员工
+    explode.deleteUser = function(){
+        $('.delete-user').click(function() {
+            var id = $(this).parentsUntil('tr').attr('data-id');
+            // var id = $(this).attr('class');
+            alert(id);
+        });
+    };
+});

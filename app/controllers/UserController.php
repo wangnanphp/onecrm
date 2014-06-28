@@ -6,7 +6,7 @@ class UserController extends BaseController {
      * 获取用户列表
      * @return [type] [description]
      */
-    public function getList()
+    public function getUserList()
     {
         $users = User::paginate(5);
         return View::make('users.userList')->with('users', $users);
@@ -133,6 +133,29 @@ class UserController extends BaseController {
             }
         }
 // P(DB::getQueryLog());
+        json_output($json_response);
+    }
+
+
+    public function getDeleteUser()
+    {
+        $json_response = ['status' => 2, 'msg' => '请通过正常途径修改信息！'];
+        // 获取ID
+        $id = trim(Input::get('id'));
+        // 进行验证
+        $validator = Validator::make(['id' => $id], ['id' => 'required | integer | exists:user,id']);
+        if( $validator->passes() )
+        {
+            if( false === User::destroy($id) )
+            {
+                $json_response = ['status' => 1, 'msg' => '数据删除失败！'];
+            }
+            else
+            {
+                $json_response = ['status' => 0, 'msg' => '删除用户信息成功！'];
+            }
+        }
+
         json_output($json_response);
     }
 }
