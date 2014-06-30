@@ -37,9 +37,21 @@ define(function (require, explode) {
     // 删除员工
     explode.deleteUser = function(){
         $('.delete-user').click(function() {
-            var id = $(this).parentsUntil('tr').attr('data-id');
-            // var id = $(this).attr('class');
-            alert(id);
+            // 获取其祖先对象(tr)
+            var oTr = $(this).parents('tr');
+            // 获取ID
+            var id  = oTr.attr('data-id');
+            if( ! id ) {
+                toastr.error('无效请求！', "操作失败", toastorMsg.errorOpt);
+                return false;
+            }
+            $.post('/user/user-delete', {'id':id}, function(data){
+                if( 0 !== data.status) {
+                    toastr.error(data.msg, "操作失败", toastorMsg.errorOpt);
+                    return false;
+                }
+                oTr.fadeOut('1000');
+            }, 'json');
         });
     };
 });

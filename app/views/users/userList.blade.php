@@ -31,12 +31,12 @@
                     </td>
                     <td>
                         <div class="checkbox checkbox-replace color-red">
-                            <input class="mode" type="checkbox" data-mode="status" @if( 0 === $u_v->status ) checked @endif>
+                            <input class="mode" type="checkbox" data-mode="status" @if( 0 !== $u_v->status ) checked @endif>
                         </div>
                     </td>
                     <td class="center">
-                        <button type="button" class="btn btn-info btn-xs"> <i class="entypo-eye"></i> </button>
-                        <button type="button" class="btn btn-gold btn-xs"> <i class="entypo-pencil"></i> </button>
+                        <a type="button" class="btn btn-info btn-xs" href="/user/user-info?id={{ $u_v->id }}"> <i class="entypo-eye"></i> </a>
+                        <a class="btn btn-gold btn-xs" href="/user/user-modify?id={{ $u_v->id }}"> <i class="entypo-pencil"></i> </a>
                         <button type="button" class="btn btn-danger btn-xs delete-user"> <i class="entypo-cancel"></i> </button>
                     </td>
                 </tr>

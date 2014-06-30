@@ -8,7 +8,7 @@ class UserController extends BaseController {
      */
     public function getUserList()
     {
-        $users = User::paginate(5);
+        $users = User::orderBy('id')->paginate(5);
         return View::make('users.userList')->with('users', $users);
     }
 
@@ -17,9 +17,9 @@ class UserController extends BaseController {
      * 添加用户页面
      * @return [type] [description]
      */
-    public function getAddUser()
+    public function getUserAdd()
     {
-        return View::make('users.addUser');
+        return View::make('users.userAdd');
     }
 
 
@@ -70,7 +70,7 @@ class UserController extends BaseController {
             // }
 
             $idcards_image = Input::file('idcards_image');
-            $user->idcards_image = 1;
+            $user->idcards_image = time();
             if( $inputs['idcards'] )
             {
                 $user->idcards_image = $inputs['idcards'];
@@ -82,7 +82,7 @@ class UserController extends BaseController {
 
         $user->login_email = $inputs['login_email'];
         $user->login_name  = explode('@', $inputs['login_email'])[0];
-        $user->nickname    = $user->login_name;
+        $user->nickname    = $user->nickname;
         $user->password    = Hash::make($inputs['password']);
         $user->realname    = $inputs['realname'];
         $user->idcards     = $inputs['idcards'];
@@ -101,7 +101,7 @@ class UserController extends BaseController {
         }
         else
         {
-            return View::make('publics/addFormSuccess')->with(['url' => '/user/add-user', 'successMsg' =>'添加新用户成功！']);
+            return View::make('publics/pageSuccess')->with(['url' => '/user/add-user', 'successMsg' =>'添加新用户成功！']);
         }
     }
 
@@ -137,7 +137,7 @@ class UserController extends BaseController {
     }
 
 
-    public function getDeleteUser()
+    public function postUserDelete()
     {
         $json_response = ['status' => 2, 'msg' => '请通过正常途径修改信息！'];
         // 获取ID
@@ -157,5 +157,151 @@ class UserController extends BaseController {
         }
 
         json_output($json_response);
+    }
+
+
+    /**
+     * 修改用户信息显示页面
+     */
+    public function getUserModify()
+    {
+        $id = Input::get('id');
+
+        // 验证ID
+        $validator = Validator::make(['id' => $id], ['id' => 'required | integer | exists:user,id']);
+        // 验证通过
+        if( $validator->passes() )
+        {
+            $user = User::find($id);
+            // 如果有身份证上传，则整理路径
+            if( $user->idcards_image )
+            {
+                $user->idcards_image = '../app/storage/uploades/idcards/' . $user->idcards_image;
+            }
+
+            return View::make('users.userModify')->with('user', $user);
+        }
+        else
+        {
+            $viewData = ['title' => '修改用户信息失败！', 'errorMsg' => ['查询用户数据失败！']];
+            return View::make('publics.pageError')->with($viewData);
+        }
+    }
+
+
+    /**
+     * 用户信息修改处理
+     * @return [type]
+     */
+    public function postUserModify()
+    {
+        // 获取表单数据
+        $inputs = array_trim(Input::all(), ['password', 'password_confirmation']);
+
+        // 验证规则
+        $rules = array(
+            'id'          => 'required | exists:user,id',
+            'login_email' => 'required | email | exists:user,login_email',
+            'password'    => 'min:6 | confirmed:repassword',
+            'idcards'     => 'unique:user',
+        );
+        // 验证提示消息
+        $messages = array(
+            'id.required'          => '请选择要修改的用户！',
+            'id:exists'            => '用户信息不存在！',
+            'login_email.required' => '登陆邮箱不能为空！',
+            'login_email.email'    => '登陆邮箱地址不正确！',
+            'login_email.exists'   => '登陆邮箱不能修改！',
+            'password.min'         => '密码长度不能少于6位！',
+            'password.confirmed'   => '两次输入密码不一致！',
+            'idcards.unique'       => '身份证号码重复！',
+        );
+        // 进行验证
+        $validator = Validator::make($inputs, $rules, $messages);
+        if( $validator->fails() )
+        {
+            $viewData = ['title' => '修改用户信息失败！', 'errorMsg' => $validator->messages()->all()];
+            return View::make('publics.pageError')->with($viewData);
+        }
+        else    // 数据验证通过
+        {
+            // 获取ORM
+            $user = User::find($inputs['id']);
+
+            // 身份证图片上传
+            if( Input::hasFile('idcards_image') )
+            {
+                $idcards_image = Input::file('idcards_image');
+                $user->idcards_image = time();
+                if( $inputs['idcards'] )
+                {
+                    $user->idcards_image = $inputs['idcards'];
+                }
+                $user->idcards_image = $user->idcards_image . '.' . $idcards_image->getClientOriginalExtension();
+                $idcards_image->move(storage_path() . '/uploades/idcards/', $user->idcards_image);
+            }
+
+            // 对象赋值
+            $user->nickname = $user->nickname;
+            if( $inputs['password'] )    // 密码
+            {
+                $user->password = Hash::make($inputs['password']);
+            }
+            $user->realname = $inputs['realname'];
+            $user->idcards  = $inputs['idcards'];
+            // 是否在职
+            $user->work = 0;
+            if( ! isset($inputs['work']) || 'on' != $inputs['work'] )
+            {
+                $user->work = 1;
+            }
+            // 是否锁定
+            $user->status = 0;
+            if( ! isset($inputs['status']) || 'on' != $inputs['status'])
+            {
+                $user->status = 1;
+            }
+
+            if( false === $user->save() )    // 修改失败
+            {
+                $viewData = ['title' => '修改用户信息失败！', 'errorMsg' => ['数据库操作失败！']];
+                return View::make('publics.pageError')->with($viewData);
+            }
+            else    // 修改成功
+            {
+                $viewData = ['url' => '/user/user-list', 'successMsg' => '用户信息修改成功！'];
+                return View::make('publics.pageSuccess')->with($viewData);
+            }
+        }
+    }
+
+
+    /**
+     * 查看用户信息
+     * @return [type]
+     */
+    public function getUserInfo()
+    {
+        $id = Input::get('id');
+
+        // 验证ID
+        $validator = Validator::make(['id' => $id], ['id' => 'required | integer | exists:user,id']);
+        // 验证通过
+        if( $validator->passes() )
+        {
+            $user = User::find($id);
+            // 如果有身份证上传，则整理路径
+            if( $user->idcards_image )
+            {
+                $user->idcards_image = '../app/storage/uploades/idcards/' . $user->idcards_image;
+            }
+
+            return View::make('users.userInfo')->with('user', $user);
+        }
+        else
+        {
+            $viewData = ['title' => '查看用户信息失败！', 'errorMsg' => ['查询用户数据失败！']];
+            return View::make('publics.pageError')->with($viewData);
+        }
     }
 }
