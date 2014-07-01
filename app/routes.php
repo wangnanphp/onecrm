@@ -34,11 +34,7 @@ Route::controller('user', 'UserController');
 /* User E */
 
 /* Role S */
-// 添加角色(部门)页面
 Route::controller('role', 'RoleController');
-// Route::get('role/add', 'RoleController@add');
-// // 执行添加角色(角色)
-// Route::post('role/doAddRole', 'RoleController@doAddRole');
 /* Role E */
 
 /* System S */

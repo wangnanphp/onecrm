@@ -39,7 +39,7 @@ define(function (require, explode) {
         $('.delete-user').click(function() {
             // 获取其祖先对象(tr)
             var oTr = $(this).parents('tr');
-            // 获取ID
+            // 获取要删除用户的ID
             var id  = oTr.attr('data-id');
             if( ! id ) {
                 toastr.error('无效请求！', "操作失败", toastorMsg.errorOpt);
@@ -52,6 +52,28 @@ define(function (require, explode) {
                 }
                 oTr.fadeOut('1000');
             }, 'json');
+        });
+    };
+
+    // 编辑员工角色
+    explode.userRoleEdit = function() {
+        $('.user-role-edit').click(function() {
+            // 获取要修改用户的ID
+            var nId = $(this).parents('tr').attr('data-id');
+            if( ! nId ) {
+                toastr.error('无效请求！', "操作失败", toastorMsg.errorOpt);
+                return false;
+            }
+
+            $('#myModal').modal();
+
+            // 获取所有部门信息和此员工现所在部门信息
+            // $.post('/user/user-role', {'id', id}, function(data){
+            //     if( 0 !== data.status ) {
+            //         toastr.error(data.msg, "操作失败", toastorMsg.errorOpt);
+            //         return false;
+            //     }
+            // });
         });
     };
 });

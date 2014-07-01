@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<h2>员工列表</h2>
+<h2>员工列表管理</h2>
 <br />
 <div id="wrapper" class="row" name="user-list" module="user">
     <div class="col-md-12">
@@ -25,6 +25,9 @@
                     <td>{{ $u_v->last_login_time }}</td>
                     <td>{{ $u_v->last_login_ip }}</td>
                     <td>
+                        <button type="button" class="btn btn-orange btn-xs user-role-edit">部门设置</button>
+                    </td>
+                    <td>
                         <div class="checkbox checkbox-replace color-green">
                             <input class="mode" type="checkbox" data-mode="work" @if( 0 === $u_v->work ) checked @endif />
                         </div>
@@ -46,4 +49,33 @@
         {{ $users->links() }}
     </div>
 </div>
-@endsection
+@stop
+
+{{-- 弹出层 S --}}
+@section('modal')
+    @include('publics.modal')
+@stop
+{{-- 弹出层的主内容区 --}}
+@section('modal_content')
+<div class="panel-body">
+<form role="form" class="form-horizontal form-groups-bordered">
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Multi-Select List</label>
+        <div class="col-sm-7">
+            <select multiple="multiple" name="my-select[]" class="form-control multi-select">
+                <option value="elem_1">elem 1</option>
+                <option value="elem_2">elem 2</option>
+                <option value="elem_3">elem 3</option>
+                <option value="elem_4">elem 4</option>
+                <option value="elem_5">elem 5</option>
+                <option value="elem_6">elem 6</option>
+                <option value="elem_7">elem 7</option>
+                <option value="elem_8" selected>Selected element</option>
+                <option value="elem_9" selected>Selected element 2</option>
+            </select>
+        </div>
+    </div>
+</form>
+</div>
+@stop
+{{-- 弹出层 E --}}

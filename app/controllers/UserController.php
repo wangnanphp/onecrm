@@ -9,7 +9,8 @@ class UserController extends BaseController {
     public function getUserList()
     {
         $users = User::orderBy('id')->paginate(5);
-        return View::make('users.userList')->with('users', $users);
+        return View::make('users.userList')->with('users', $users)
+            ->withModalTitle('用户部门设置');
     }
 
 

@@ -53,9 +53,13 @@
         {{-- Main E --}}
 
         {{-- Chat S --}}
-        @include('publics.chat')
+        {{-- @include('publics.chat') --}}
         {{-- Chat E --}}
     </div>
+
+    {{-- 弹出层 S --}}
+    @yield('modal', '')
+    {{-- 弹出层 E --}}
 
     {{ HTML::style('static/template/js/select2/select2-bootstrap.css', ['id' => 'style-resource-7']) }}
     {{ HTML::style('static/template/js/select2/select2.css', ['id' => 'style-resource-8']) }}

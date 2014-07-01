@@ -14,6 +14,8 @@ define(function(require, explode) {
             userList.changeMode();
             // 删除用户
             userList.deleteUser();
+            // 用户角色编辑
+            userList.userRoleEdit();
             break;
     }
 });

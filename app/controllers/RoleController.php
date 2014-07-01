@@ -2,17 +2,27 @@
 
 class RoleController extends BaseController {
 
+    /**
+     * 角色列表页面
+     * @return [type] [description]
+     */
+    public function getRoleList()
+    {
+        $roleList = with(new Role)->getAllRoles();
+        return View::make('roles.roleList')->withRoleList($roleList)
+            ->withModalTitle('用户部门设置');
+    }
 
     /**
      * 添加角色页面
      */
-    public function add()
+    public function getRoleAdd()
     {
         // 获取所有的角色信息
         $roles = new Role;
         $roles = $roles->getAllRoles();
 
-        return View::make('roles.addRole')->with('roles', $roles);
+        return View::make('roles.roleAdd')->with('roles', $roles);
     }
 
 
@@ -20,7 +30,7 @@ class RoleController extends BaseController {
      * 执行角色添加操作
      * @return [type] [description]
      */
-    public function doAddRole()
+    public function postRoleAdd()
     {
         $json_reponse = ['status' => -1, 'msg' => '未知错误'];
 
