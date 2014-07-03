@@ -8,9 +8,16 @@ class UserController extends BaseController {
      */
     public function getUserList()
     {
-        $users = User::orderBy('id')->paginate(5);
-        return View::make('users.userList')->with('users', $users)
-            ->withModalTitle('用户部门设置');
+        // 视图数据
+        $viewData = array();
+        // 获取用户信息并分页显示
+        $viewData['users'] = User::orderBy('id')->paginate(5);
+
+        // 获取所有角色信息
+        $viewData['roles'] = with(new Role)->getAllRoles();
+
+        $viewData['modal_title'] = '用户部门设置';
+        return View::make('users.userList')->with($viewData);
     }
 
 
@@ -304,5 +311,27 @@ class UserController extends BaseController {
             $viewData = ['title' => '查看用户信息失败！', 'errorMsg' => ['查询用户数据失败！']];
             return View::make('publics.pageError')->with($viewData);
         }
+    }
+
+
+    public function postUserRole($user_id)
+    {
+        $responseJson = ['status' => -1, 'msg' => '未知错误！'];
+
+        // 获取用户ID
+        $id = Input::get('id');
+        // 验证ID
+        $validator = Validator::make(['id' => $id], ['id' => 'required | integer | exists:user,id']);
+        if( $validator->passes() )    // 验证通过
+        {
+            $userRole = with(new User())->getUserRoleId($id);
+            $responseJson = ['status' => 0, 'user_role' => $userRole];
+        }
+        else
+        {
+            $responseJson = ['status' => 2, 'errorMsg' => '请通过正常途径！'];
+        }
+
+        json_output($responseJson);
     }
 }

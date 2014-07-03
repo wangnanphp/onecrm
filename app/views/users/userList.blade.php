@@ -51,31 +51,46 @@
 </div>
 @stop
 
-{{-- 弹出层 S --}}
+{{-- 弹出层 modal S --}}
 @section('modal')
-    @include('publics.modal')
-@stop
-{{-- 弹出层的主内容区 --}}
-@section('modal_content')
-<div class="panel-body">
-<form role="form" class="form-horizontal form-groups-bordered">
-    <div class="form-group">
-        <label class="col-sm-3 control-label">Multi-Select List</label>
-        <div class="col-sm-7">
-            <select multiple="multiple" name="my-select[]" class="form-control multi-select">
-                <option value="elem_1">elem 1</option>
-                <option value="elem_2">elem 2</option>
-                <option value="elem_3">elem 3</option>
-                <option value="elem_4">elem 4</option>
-                <option value="elem_5">elem 5</option>
-                <option value="elem_6">elem 6</option>
-                <option value="elem_7">elem 7</option>
-                <option value="elem_8" selected>Selected element</option>
-                <option value="elem_9" selected>Selected element 2</option>
-            </select>
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">{{ $modal_title }}</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" class="form-horizontal form-groups-bordered">
+            <div class="col-sm-12" style="padding:10px 0px 15px;"><div class="col-sm-3"></div><div class="col-sm-4">未选部门</div><div class="col-sm-5">已选部门</div></div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">请点选部门</label>
+                <div class="col-sm-9">
+                    <select id="user-role" multiple="multiple" name="my-select[]" class="form-control multi-select">
+                        @foreach($roles as $r_v)
+                            <option value="{{ $r_v->id }}">
+                                |&sim;
+                                <?php $tmp_path_length = floor(strlen($r_v->path) / 2); ?>
+                                @for(;$tmp_path_length > 0; $tmp_path_length--)
+                                    &sim;
+                                @endfor
+                                {{ $r_v->name }}
+                            </option>
+                        @endforeach
+                        <option value="elem_9" selected>Selected element 2</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">保存</button>
+      </div>
     </div>
-</form>
+  </div>
 </div>
 @stop
+{{-- 弹出层 modal E --}}
 {{-- 弹出层 E --}}

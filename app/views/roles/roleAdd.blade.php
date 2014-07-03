@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-9">
-                        <button id="json-add-role" type="submit" class="btn btn-success" data-url="/role/doAddRole">添加</button>
+                        <button id="json-add-role" type="submit" class="btn btn-success" data-url="/role/role-add">添加</button>
                         <button type="reset" class="btn">重置</button>
                     </div>
                 </form>

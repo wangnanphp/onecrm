@@ -55,7 +55,7 @@ define(function (require, explode) {
         });
     };
 
-    // 编辑员工角色
+    // 编辑员工角色信息
     explode.userRoleEdit = function() {
         $('.user-role-edit').click(function() {
             // 获取要修改用户的ID
@@ -65,15 +65,18 @@ define(function (require, explode) {
                 return false;
             }
 
-            $('#myModal').modal();
+            获取所有部门信息和此员工现所在部门信息
+            $.post('/user/user-role', {'id', id}, function(data){
+                if( 0 !== data.status ) {
+                    toastr.error(data.msg, "操作失败", toastorMsg.errorOpt);
+                    return false;
+                }else {
+                    $oOptions = $('#user-role').find('option');
+                    // for(roleId in )
+                    $('#myModal').modal();
+                }
 
-            // 获取所有部门信息和此员工现所在部门信息
-            // $.post('/user/user-role', {'id', id}, function(data){
-            //     if( 0 !== data.status ) {
-            //         toastr.error(data.msg, "操作失败", toastorMsg.errorOpt);
-            //         return false;
-            //     }
-            // });
+            });
         });
     };
 });
