@@ -6,8 +6,8 @@ define(function(require, explode) {
 
     explode.submitFormByJson = function(btnID) {
         $(btnID).click(function() {
-            var submitForm = $(this).parents('form');
-            $.post($(this).attr('data-url'), submitForm.serialize(), function(data) {
+            var submitForm = $(this).closest('form');
+            $.post($(this).data('url'), submitForm.serialize(), function(data) {
                 if( 0 === data.status ) {
                     toastr.success(data.msg, "操作成功", toastorMsg.successOpt);
                     submitForm[0].reset();
