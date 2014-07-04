@@ -26,15 +26,4 @@ class Role extends BaseModel {
         // 返回按等级层次排序好的所有的角色信息(按 [path,pid] 排序)
         return $this->orderBy(DB::raw('concat(`path`, ",", `id`)'))->get();
     }
-
-
-    /**
-     * 获取用户所属的所有角色ID
-     * @param  int $user_id 用户ID
-     * @return array        用户的角色信息
-     */
-    public function getUserRoleId($userId)
-    {
-        return $this->select('role_id')->where('user_id', '=', $userId)->get();
-    }
 }

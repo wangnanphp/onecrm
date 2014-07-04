@@ -78,7 +78,6 @@
                                 {{ $r_v->name }}
                             </option>
                         @endforeach
-                        <option value="elem_9" selected>Selected element 2</option>
                     </select>
                 </div>
             </div>

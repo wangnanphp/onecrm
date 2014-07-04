@@ -79,4 +79,24 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
     {
         return $this->email;
     }
+
+
+    /**
+     * 获取用户所属的所有角色ID
+     * @param  int $user_id 用户ID
+     * @return array        用户的角色信息
+     */
+    public function getUserRoleId($userId)
+    {
+        return DB::table('user_role')->select('role_id')
+            ->where('user_id', '=', $userId)
+            ->get();
+        // return $this->select('role_id')->where('user_id', '=', $userId)->get();
+    }
+
+
+    public function role()
+    {
+        return $this->hasMany('Role');
+    }
 }

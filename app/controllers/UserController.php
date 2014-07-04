@@ -314,7 +314,7 @@ class UserController extends BaseController {
     }
 
 
-    public function postUserRole($user_id)
+    public function postUserRole()
     {
         $responseJson = ['status' => -1, 'msg' => '未知错误！'];
 
@@ -325,7 +325,14 @@ class UserController extends BaseController {
         if( $validator->passes() )    // 验证通过
         {
             $userRole = with(new User())->getUserRoleId($id);
-            $responseJson = ['status' => 0, 'user_role' => $userRole];
+            // var_dump($userRole);
+            // 整理数据
+            foreach ($userRole as $value) {
+                $userRoleIds[] = $value->role_id;
+            }
+
+            $userRoleIds = empty($userRoleIds) ? '' : $userRoleIds;
+            $responseJson = ['status' => 0, 'user_role' => $userRoleIds];
         }
         else
         {

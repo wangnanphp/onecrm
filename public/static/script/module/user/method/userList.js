@@ -58,6 +58,7 @@ define(function (require, explode) {
     // 编辑员工角色信息
     explode.userRoleEdit = function() {
         $('.user-role-edit').click(function() {
+            // alert(111);exit;
             // 获取要修改用户的ID
             var nId = $(this).parents('tr').attr('data-id');
             if( ! nId ) {
@@ -65,14 +66,32 @@ define(function (require, explode) {
                 return false;
             }
 
-            获取所有部门信息和此员工现所在部门信息
-            $.post('/user/user-role', {'id', id}, function(data){
+
+            // 获取所有部门信息和此员工现所在部门信息
+            $.post('/user/user-role', {'id': nId}, function(data) {
                 if( 0 !== data.status ) {
                     toastr.error(data.msg, "操作失败", toastorMsg.errorOpt);
                     return false;
                 }else {
-                    $oOptions = $('#user-role').find('option');
-                    // for(roleId in )
+                    var oSelectables = $('.ms-selectable').find('li');    // 未选择
+                    var oSelections  = $('.ms-selection').find('li');    // 已选择
+
+                    // 初始化两组选择项
+                    oSelectables.attr('style', '').removeClass('ms-selected');
+                    oSelections.attr('style', 'display:none').removeClass('ms-selected');
+
+
+                    // var oOptionLis = $('#ms-user-role').find('li');
+                    // alert(oOptionLis.length);
+                    // oOptionLis.addClass('ms-selected');
+                    var i;
+                    for( i = 0; i < data.user_role.length; i++ ) {
+                        // 设置不在左侧显示
+                        var a = oSelectables.filter('#' + data.user_role[i] + '-selectable');
+                        a.attr('style', 'display:none').addClass('ms-selected');
+                        // 设置在右侧显示
+                        oSelections.filter('#' + data.user_role[i] + '-selection').attr('style', '').addClass('ms-selected');
+                    }
                     $('#myModal').modal();
                 }
 
