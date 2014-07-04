@@ -98,4 +98,9 @@ define(function (require, explode) {
             });
         });
     };
+
+    // 提交员工部门修改信息
+    explode.userRoleSubmit = function() {
+        // $().
+    };
 });

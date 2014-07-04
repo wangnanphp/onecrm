@@ -145,6 +145,10 @@ class UserController extends BaseController {
     }
 
 
+    /**
+     * 删除用户信息
+     * @return JSON [description]
+     */
     public function postUserDelete()
     {
         $json_response = ['status' => 2, 'msg' => '请通过正常途径修改信息！'];
@@ -314,6 +318,10 @@ class UserController extends BaseController {
     }
 
 
+    /**
+     * 获取用户角色信息
+     * @return JSON [description]
+     */
     public function postUserRole()
     {
         $responseJson = ['status' => -1, 'msg' => '未知错误！'];
@@ -340,5 +348,17 @@ class UserController extends BaseController {
         }
 
         json_output($responseJson);
+    }
+
+
+    /**
+     * 修改用户角色信息
+     * @return JSON [description]
+     */
+    public function postUserRoleEdit()
+    {
+        $inputs = Input::get();
+
+        V($inputs);
     }
 }

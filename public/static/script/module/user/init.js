@@ -16,6 +16,9 @@ define(function(require, explode) {
             userList.deleteUser();
             // 用户角色编辑
             userList.userRoleEdit();
+            // 用户角色编辑提交
+            var userRoleEditSubmit = require('module/common/method/submitForm');
+            userRoleEditSubmit.submitFormByJson('user-role-edit');
             break;
     }
 });

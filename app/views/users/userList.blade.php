@@ -67,7 +67,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label">请点选部门</label>
                 <div class="col-sm-9">
-                    <select id="user-role" multiple="multiple" name="my-select[]" class="form-control multi-select">
+                    <select id="user-role" multiple="multiple" name="roles[]" class="form-control multi-select">
                         @foreach($roles as $r_v)
                             <option value="{{ $r_v->id }}">
                                 |&sim;
@@ -84,8 +84,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary">保存</button>
+        <button class="btn btn-default" type="button" data-dismiss="modal">关闭</button>
+        <button class="btn btn-primary" id="user-role-edit" type="button" data-dismiss="modal" data-url="/user/user-role-edit">保存</button>
       </div>
     </div>
   </div>
