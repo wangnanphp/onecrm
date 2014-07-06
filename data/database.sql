@@ -117,7 +117,7 @@ CREATE TABLE `user_role`(
     `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 修改时间
     `deleted_at` INT(10) UNSIGNED DEFAULT NULL,            -- 软删除
     PRIMARY KEY(`id`),
-    UNIQUE KEY(`user_id`,`role_id`),
+    KEY(`user_id`,`role_id`),
     KEY(`user_id`),
     KEY(`role_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
