@@ -9,6 +9,13 @@ class BaseModel extends Eloquent {
      */
     protected $softDelete = true;
 
+    /**
+     * 不可被集体赋值的黑名单
+     *
+     * @var array
+     */
+    protected $guarded = array('id', 'created_at', 'updated_at');
+
 
     /**
      * 重写 created_at 和 updated_at 数据字段格式为时间戳格式
