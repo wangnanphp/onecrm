@@ -10,7 +10,11 @@ if( ! function_exists('P') )
     function P($data)
     {
         echo '<pre>';
-        print_r($data);
+        $args = func_get_args();
+        foreach ($args as $value)
+        {
+            print_r($value);
+        }
         echo '</pre>';
     }
 }
@@ -18,9 +22,13 @@ if( ! function_exists('P') )
 
 if( ! function_exists('V') )
 {
-    function V($data)
+    function V()
     {
-        var_dump($data);
+        $args = func_get_args();
+        foreach ($args as $value)
+        {
+            var_dump($value);
+        }
     }
 }
 
