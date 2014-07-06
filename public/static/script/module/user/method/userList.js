@@ -58,23 +58,26 @@ define(function (require, explode) {
     // 编辑员工角色信息
     explode.userRoleEdit = function() {
         $('.user-role-edit').click(function() {
-            // alert(111);exit;
             // 获取要修改用户的ID
-            var nId = $(this).parents('tr').attr('data-id');
-            if( ! nId ) {
+            var userId = $(this).parents('tr').attr('data-id');
+            if( ! userId ) {
                 toastr.error('无效请求！', "操作失败", toastorMsg.errorOpt);
                 return false;
             }
 
 
             // 获取所有部门信息和此员工现所在部门信息
-            $.post('/user/user-role', {'id': nId}, function(data) {
+            $.post('/user/user-role', {'id': userId}, function(data) {
                 if( 0 !== data.status ) {
                     toastr.error(data.msg, "操作失败", toastorMsg.errorOpt);
                     return false;
                 }else {
-                    var oSelectables = $('.ms-selectable').find('li');    // 未选择
-                    var oSelections  = $('.ms-selection').find('li');    // 已选择
+                    var oSelectables = $('.ms-selectable').find('li');   // 未选择
+                    var oSelection   = $('.ms-selection');
+                    var oSelections  = oSelection.find('li');    // 已选择
+
+                    // 取userId值赋予选择的块上，用于下一步提交时传入后端
+                    oSelection.data('user-id', userId);
 
                     // 初始化两组选择项
                     oSelectables.attr('style', '').removeClass('ms-selected');
@@ -101,6 +104,33 @@ define(function (require, explode) {
 
     // 提交员工部门修改信息
     explode.userRoleSubmit = function() {
-        // $().
+        $('#user-role-edit').on('click', function() {
+            // 获取要修改用户的ID
+            var userId = $('.ms-selection').data('user-id');
+            if( ! userId ) {
+                toastr.error('无效请求！', "操作失败", toastorMsg.errorOpt);
+                return false;
+            }
+
+            // 获取选择项
+            var oOptions = $('.ms-selection').find('li').filter(function() {
+                return $(this).hasClass('ms-selected');
+            });
+
+            // 整理选择项为整数数组形式
+            var oOptionIds = new Array();
+            for(var i = 0; i < oOptions.length; i++) {
+                oOptionIds[i] = parseInt(oOptions.eq(i).attr('id'));
+            }
+
+            $.post($(this).data('url'), {'userId' : userId, 'roleIds' : oOptionIds}, function(data) {
+                if( 0 === data.status ) {
+                    toastr.success(data.msg, "操作成功", toastorMsg.successOpt);
+                }else {
+                    toastr.error(data.msg, "操作失败", toastorMsg.errorOpt);
+                }
+            }, 'json');
+
+        });
     };
 });

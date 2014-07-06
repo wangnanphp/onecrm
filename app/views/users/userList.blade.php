@@ -15,7 +15,7 @@
             </thead>
             <tbody>
             @foreach($users as $u_v)
-                <tr data-id="{{ $u_v->id }}">
+                <tr class="user" data-id="{{ $u_v->id }}">
                     <td>{{ $u_v->id }}</td>
                     <td>{{ $u_v->login_email }}</td>
                     <td>{{ $u_v->login_name }}</td>

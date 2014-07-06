@@ -9,13 +9,6 @@ class Role extends BaseModel {
      */
     protected $table = 'role';
 
-    /**
-     * 不可被集体赋值的黑名单
-     *
-     * @var array
-     */
-    protected $guarded = array('id', 'created_at', 'updated_at');
-
 
     /**
      * 获得所有角色(部门)信息，带层级关系

@@ -327,18 +327,13 @@ class UserController extends BaseController {
         $responseJson = ['status' => -1, 'msg' => '未知错误！'];
 
         // 获取用户ID
-        $id = Input::get('id');
+        $userId = Input::get('id');
         // 验证ID
-        $validator = Validator::make(['id' => $id], ['id' => 'required | integer | exists:user,id']);
+        $validator = Validator::make(['id' => $userId], ['id' => 'required | integer | exists:user,id']);
         if( $validator->passes() )    // 验证通过
         {
-            $userRole = with(new User())->getUserRoleId($id);
-            // var_dump($userRole);
-            // 整理数据
-            foreach ($userRole as $value) {
-                $userRoleIds[] = $value->role_id;
-            }
-
+            // 获取用户当前拥有的角色ID
+            $userRoleIds = UserRole::where('user_id', '=', $userId)->lists('role_id');
             $userRoleIds = empty($userRoleIds) ? '' : $userRoleIds;
             $responseJson = ['status' => 0, 'user_role' => $userRoleIds];
         }
@@ -357,8 +352,52 @@ class UserController extends BaseController {
      */
     public function postUserRoleEdit()
     {
-        $inputs = Input::get();
+        $reponseJson = ['status' => -1, 'msg' => '未知错误！'];
+        $userId  = Input::get('userId');
+        $roleIds = Input::get('roleIds');
+        // V($userId, $roleIds);
 
-        V($inputs);
+        // 验证ID
+        $validator = Validator::make(['userId' => $userId], ['userId' => 'required | integer | exists:user,id']);
+        // 验证通过
+        if( $validator->passes() )
+        {
+            // 获取用户当前拥有的角色ID
+            $userRoleIds = UserRole::where('user_id', '=', $userId)->lists('role_id');
+            // V($userRoleIds);
+            // 去重
+            $userAddRoleIds = array_diff($roleIds, $userRoleIds);
+            $userDelRoleIds = array_diff($userRoleIds, $roleIds);
+
+            // 整理要插入的数据
+            foreach ($userAddRoleIds as $aValue) {
+                $dataInsert[] = ['role_id' => $aValue, 'user_id' => $userId];
+            }
+            // foreach ($userDelRoleIds as $dValue) {
+            //     $dataDelete[] = ['role_id' => $dValue, 'user_id' => $userId];
+            // }
+            // V($userAddRoleIds, $dataInsert, $userDelRoleIds);die;
+
+            // 删除取消掉的角色
+            empty($userDelRoleIds) || UserRole::whereIn('role_id', $userDelRoleIds)
+                ->where('user_id', $userId)->delete();
+            // 插入新增的角色数据
+            $add = true;
+            empty($dataInsert) || $add = DB::table('user_role')->insert($dataInsert);
+            if( true === $add )
+            {
+                $responseJson = ['status' => 0, 'msg' => '用户角色修改成功！'];
+            }
+            else
+            {
+                $responseJson = ['status' => 1, 'msg' => '修改数据失败！'];
+            }
+        }
+        else
+        {
+            $responseJson = ['status' => 2, 'msg' => '请通过正常途径！'];
+        }
+
+        json_output($responseJson);
     }
 }
