@@ -39,9 +39,9 @@
                         <li><a href=""><i class="entypo-doc-text"></i><span>管理注册码</span></a></li>
                         <li><a href=""><i class="entypo-cog"></i><span>注册码配置</span></a>
                             <ul>
-                                <li><a href="/regcode/config-add"><i class="entypo-list-add"></i><span>添加配置信息</span></a></li>
-                                <li><a href=""><i class="entypo-flow-tree"></i><span>类型管理</span></a></li>
-                                <li><a href=""><i class="entypo-monitor"></i><span>使用终端管理</span></a></li>
+                                <li><a href="/regconf/config-add"><i class="entypo-list-add"></i><span>添加配置信息</span></a></li>
+                                <li><a href="/regconf/type-list"><i class="entypo-flow-tree"></i><span>类型管理</span></a></li>
+                                <li><a href="/regconf/terminal-list"><i class="entypo-monitor"></i><span>使用终端管理</span></a></li>
                             </ul>
                         </li>
                     </ul>

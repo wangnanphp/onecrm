@@ -18,7 +18,10 @@ Route::get('/', function()
 });
 
 /* Regcode S */
+// 注册码相关
 Route::controller('regcode', 'RegcodeController');
+// 注册码配置相关
+Route::controller('regconf', 'RegcodeConfigController');
 /* Regcode E */
 
 /* User S */

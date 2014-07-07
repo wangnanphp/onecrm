@@ -35,7 +35,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-9">
-                                    <button id="json-add-type" class="btn btn-success" type="submit" data-url="/regcode/type-add">添加</button>
+                                    <button id="json-add-type" class="btn btn-success" type="submit" data-url="/regconf/type-add">添加</button>
                                     <button type="reset" class="btn">重置</button>
                                 </div>
                             </form>
@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-9">
-                                    <button id="json-add-platform" class="btn btn-success" type="submit" data-url="/regcode/terminal-add">添加</button>
+                                    <button id="json-add-platform" class="btn btn-success" type="submit" data-url="/regconf/terminal-add">添加</button>
                                     <button type="reset" class="btn">重置</button>
                                 </div>
                             </form>
