@@ -12,7 +12,12 @@ class RegcodeConfigController extends BaseController {
      */
     public function getTypeList()
     {
-        return View::make('regconf.TypeList');
+        // 获取注册码类型列表
+        $viewData['type_list']   = RegcodeType::orderBy('id', 'desc')->get();
+        // 修改时的标题(modal)
+        $viewData['modal_title'] = '修改注册码类型';
+
+        return View::make('regconf.typeList',$viewData);
     }
 
 
@@ -23,7 +28,204 @@ class RegcodeConfigController extends BaseController {
      */
     public function getTerminalList()
     {
-        return View::make('regconf.TerminalList');
+        // 获取注册码使用终端列表
+        $viewData['terminal_list'] = RegcodeTerminal::orderBy('id', 'desc')->get();
+        // 修改时的标题(modal)
+        $viewData['modal_title']   = '修改注册码使用终端';
+
+        return View::make('regconf.terminalList', $viewData);
+    }
+
+
+    /**
+     * 获取注册码类型信息
+     *
+     * @return [type] [description]
+     */
+    public function postTypeInfo()
+    {
+        $responseJson = ['status' => 2, 'msg' => '请通过正常途径修改信息！'];
+        $inputs = Input::all();
+
+        // 验证数据
+        $validator = Validator::make($inputs, ['id' => 'required | integer | exists:regcode_type,id']);
+        if( $validator->passes() )    // 通过验证
+        {
+            $type = RegcodeType::select('id','name', 'description')
+                ->find($inputs['id'])
+                ->toArray();
+
+            $responseJson = ['status' => 0, 'data' => $type];
+        }
+
+        json_output($responseJson);
+    }
+
+
+    /**
+     * 获取注册码使用终端信息
+     *
+     * @return [type] [description]
+     */
+    public function postTerminalInfo()
+    {
+        $responseJson = ['status' => 2, 'msg' => '请通过正常途径修改信息！'];
+        $inputs = Input::all();
+
+        // 验证数据
+        $validator = Validator::make($inputs, ['id' => 'required | integer | exists:regcode_type,id']);
+        if( $validator->passes() )    // 通过验证
+        {
+            $type = RegcodeTerminal::select('id','name', 'description')
+                ->find($inputs['id'])
+                ->toArray();
+
+            $responseJson = ['status' => 0, 'data' => $type];
+        }
+
+        json_output($responseJson);
+    }
+
+
+    /**
+     * 修改注册码类型信息
+     *
+     * @return [type] [description]
+     */
+    public function postTypeModify()
+    {
+        $responseJson = ['status' => 2, 'msg' => '请通过正常途径修改信息！'];
+        $inputs = array_trim(Input::all());
+
+        // 验证数据
+        $validatorRule = [
+            'id' => 'required | integer | exists:regcode_type,id',
+            'name' => 'required',
+        ];
+        $validatorMsg = ['id' => '请通过正常途径修改信息！', 'name' => '注册码类型名必须填写！'];
+        $validator = Validator::make($inputs, $validatorRule, $validatorMsg);
+        if( $validator->passes() )    // 通过验证
+        {
+            $type = RegcodeType::find($inputs['id']);
+            $type->name        = $inputs['name'];
+            $type->description = $inputs['description'];
+
+            if( false === $type->save() )
+            {
+                $responseJson = ['status' => 1, 'msg' => '修改类型数据失败！'];
+            }
+            else
+            {
+                $responseJson = ['status' => 0, 'msg' => '修改类型数据成功！'];
+            }
+        }
+        else
+        {
+            $responseJson = ['status' => 3, 'msg' => $validator->messages()->first()];
+        }
+
+        json_output($responseJson);
+    }
+
+
+    /**
+     * 修改注册码使用终端信息
+     *
+     * @return [type] [description]
+     */
+    public function postTerminalModify()
+    {
+        $responseJson = ['status' => 2, 'msg' => '请通过正常途径修改信息！'];
+        $inputs = array_trim(Input::all());
+
+        // 验证数据
+        $validatorRule = [
+            'id' => 'required | integer | exists:regcode_type,id',
+            'name' => 'required',
+        ];
+        $validatorMsg = ['id' => '请通过正常途径修改信息！', 'name' => '注册码使用终端名必须填写！'];
+        $validator = Validator::make($inputs, $validatorRule, $validatorMsg);
+        if( $validator->passes() )    // 通过验证
+        {
+            $type = RegcodeTerminal::find($inputs['id']);
+            $type->name        = $inputs['name'];
+            $type->description = $inputs['description'];
+
+            if( false === $type->save() )
+            {
+                $responseJson = ['status' => 1, 'msg' => '修改注册码使用终端数据失败！'];
+            }
+            else
+            {
+                $responseJson = ['status' => 0, 'msg' => '修改注册码使用终端数据成功！'];
+            }
+        }
+        else
+        {
+            $responseJson = ['status' => 3, 'msg' => $validator->messages()->first()];
+        }
+
+        json_output($responseJson);
+    }
+
+
+    /**
+     * 删除注册码类型信息
+     *
+     * @return [type] [description]
+     */
+    public function postTypeDelete()
+    {
+        $responseJson = ['status' => 2, 'msg' => '请通过正常途径删除信息！'];
+
+        // 获取要删除的类别ID
+        $inputs = Input::all();
+
+        // 验证数据
+        $validator = Validator::make($inputs, ['id' => 'required | integer | exists:regcode_type,id']);
+        if( $validator->passes() )    // 验证通过
+        {
+            if( false === RegcodeType::destroy($inputs['id']) )    // 删除失败
+            {
+                $responseJson = ['status' => 1, 'msg' =>'删除注册码类型数据失败！'];
+            }
+            else
+            {
+                $responseJson = ['status' => 0, 'msg' => '删除注册码类型成功！'];
+            }
+        }
+
+        json_output($responseJson);
+    }
+
+
+    /**
+     * 删除注册码使用终端信息
+     *
+     * @return [type] [description]
+     */
+    public function postTerminalDelete()
+    {
+        $responseJson = ['status' => 2, 'msg' => '请通过正常途径删除信息！'];
+
+        // 获取要删除的终端ID
+        $inputs = Input::all();
+
+        // 验证数据
+        $validator = Validator::make($inputs, ['id' => 'required | integer | exists:regcode_type,id']);
+        if( $validator->passes() )    // 验证通过
+        {
+            if( false === RegcodeTerminal::destroy($inputs['id']) )    // 删除失败
+            {
+                $responseJson = ['status' => 1, 'msg' =>'删除注册码使用终端数据失败！'];
+            }
+            else
+            {
+                $responseJson = ['status' => 0, 'msg' => '删除注册码使用终端成功！'];
+            }
+        }
+
+        json_output($responseJson);
     }
 
 

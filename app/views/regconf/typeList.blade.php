@@ -3,50 +3,32 @@
 @section('content')
 <h2>注册码类型管理</h2>
 <br />
-<div id="wrapper" class="row" name="user-list" module="user">
+<div id="wrapper" class="row" name="type-list" module="regcode">
     <div class="col-md-12">
         <table class="table datatable table-striped table-hover" id="table-1">
             <thead>
                 <tr>
-                    <th>ID</th> <th>登陆E-mail</th> <th>账号</th> <th>真实姓名</th>
-                    <th>身份证号</th> <th>电话</th> <th>最后登录时间</th> <th>最后登录IP</th>
-                    <th>是否在职</th> <th>状态</th> <th>操作</th>
+                    <th>ID</th> <th>类别名称</th> <th>添加/修改人</th>
+                    <th>添加时间</th> <th>修改时间</th> <th>类别描述</th> <th>操作</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach($users as $u_v)
-                <tr class="user" data-id="{{ $u_v->id }}">
-                    <td>{{ $u_v->id }}</td>
-                    <td>{{ $u_v->login_email }}</td>
-                    <td>{{ $u_v->login_name }}</td>
-                    <td>{{ $u_v->realname }}</td>
-                    <td>{{ $u_v->idcards }}</td>
-                    <td>{{ $u_v->phone }}</td>
-                    <td>{{ $u_v->last_login_time }}</td>
-                    <td>{{ $u_v->last_login_ip }}</td>
-                    <td>
-                        <button type="button" class="btn btn-orange btn-xs user-role-edit">部门设置</button>
-                    </td>
-                    <td>
-                        <div class="checkbox checkbox-replace color-green">
-                            <input class="mode" type="checkbox" data-mode="work" @if( 0 === $u_v->work ) checked @endif />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox checkbox-replace color-red">
-                            <input class="mode" type="checkbox" data-mode="status" @if( 0 !== $u_v->status ) checked @endif>
-                        </div>
-                    </td>
+            @foreach($type_list as $tl_v)
+                <tr class="type" data-id="{{ $tl_v->id }}">
+                    <td>{{ $tl_v->id }}</td>
+                    <td>{{ $tl_v->name }}</td>
+                    <td>{{ $tl_v->user_realname }}</td>
+                    <td>{{ $tl_v->created_at }}</td>
+                    <td>{{ $tl_v->updated_at }}</td>
+                    <td>{{ $tl_v->description }}</td>
                     <td class="center">
-                        <a type="button" class="btn btn-info btn-xs" href="/user/user-info?id={{ $u_v->id }}"> <i class="entypo-eye"></i> </a>
-                        <a class="btn btn-gold btn-xs" href="/user/user-modify?id={{ $u_v->id }}"> <i class="entypo-pencil"></i> </a>
-                        <button type="button" class="btn btn-danger btn-xs delete-user"> <i class="entypo-cancel"></i> </button>
+                        <button class="btn btn-gold btn-xs config-edit" data-url="/regconf/type-info"> <i class="entypo-pencil"></i> </button>
+                        <button type="button" class="btn btn-danger btn-xs config-delete" data-url="/regconf/type-delete"> <i class="entypo-cancel"></i> </button>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
-        {{ $users->links() }}
     </div>
 </div>
 @stop
@@ -61,32 +43,27 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">{{ $modal_title }}</h4>
       </div>
+      <form role="form" class="validate form-horizontal form-groups-bordered">
       <div class="modal-body">
-        <form role="form" class="form-horizontal form-groups-bordered">
-            <div class="col-sm-12" style="padding:10px 0px 15px;"><div class="col-sm-3"></div><div class="col-sm-4">未选部门</div><div class="col-sm-5">已选部门</div></div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">请点选部门</label>
-                <div class="col-sm-9">
-                    <select id="user-role" multiple="multiple" name="roles[]" class="form-control multi-select">
-                        @foreach($roles as $r_v)
-                            <option value="{{ $r_v->id }}">
-                                |&sim;
-                                <?php $tmp_path_length = floor(strlen($r_v->path) / 2); ?>
-                                @for(;$tmp_path_length > 0; $tmp_path_length--)
-                                    &sim;
-                                @endfor
-                                {{ $r_v->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="name">注册码类型名</label>
+            <div class="col-sm-8">
+                <input id="config-name" class="form-control" type="text" name="name" data-validate="required" data-message-required="亲，注册码类型必须写哦！" placeholder="必须" />
             </div>
-        </form>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="description">类型描述</label>
+            <div class="col-sm-8">
+                <textarea id="description" class="form-control autogrow" name="description" placeholder="描述信息可不写"></textarea>
+            </div>
+        </div>
       </div>
       <div class="modal-footer">
+        <input id="config-id" name="id" type="hidden" />
         <button class="btn btn-default" type="button" data-dismiss="modal">关闭</button>
-        <button class="btn btn-primary" id="user-role-edit" type="button" data-dismiss="modal" data-url="/user/user-role-edit">保存</button>
+        <button class="btn btn-primary" id="config-modify" type="button" data-dismiss="modal" data-url="/regconf/type-modify">保存</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
