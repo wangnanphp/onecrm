@@ -18,15 +18,6 @@ define(function (require, explode) {
                 if( 0 === data.status ) {
                     toastr.success(data.msg, "操作成功", toastorMsg.successOpt);
                 }else{
-                    // 获取父DIV，用于设置选择样式
-                    // var oDiv = $(this).parents('div');
-                    // var sDivClassAttr = oDiv.attr('class');
-                    // if( sDivClassAttr.length > 60 ) {
-                    //     classAttr = sDivClassAttr.substr(0, 54);
-                    // }else {
-                    //     classAttr = sDivClassAttr + ' checked';
-                    // }
-                    // oDiv.attr('class', classAttr);
                     toastr.error(data.msg, "操作失败", toastorMsg.errorOpt);
                     return false;
                 }
@@ -38,7 +29,7 @@ define(function (require, explode) {
     explode.deleteUser = function(){
         $('.delete-user').click(function() {
             // 获取其祖先对象(tr)
-            var oTr = $(this).parents('tr');
+            var oTr = $(this).closest('tr');
             // 获取要删除用户的ID
             var id  = oTr.attr('data-id');
             if( ! id ) {
@@ -65,7 +56,6 @@ define(function (require, explode) {
                 return false;
             }
 
-
             // 获取所有部门信息和此员工现所在部门信息
             $.post('/user/user-role', {'id': userId}, function(data) {
                 if( 0 !== data.status ) {
@@ -83,10 +73,6 @@ define(function (require, explode) {
                     oSelectables.attr('style', '').removeClass('ms-selected');
                     oSelections.attr('style', 'display:none').removeClass('ms-selected');
 
-
-                    // var oOptionLis = $('#ms-user-role').find('li');
-                    // alert(oOptionLis.length);
-                    // oOptionLis.addClass('ms-selected');
                     var i;
                     for( i = 0; i < data.user_role.length; i++ ) {
                         // 设置不在左侧显示

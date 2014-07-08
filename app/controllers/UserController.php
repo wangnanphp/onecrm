@@ -56,7 +56,7 @@ class UserController extends BaseController {
             'password.required'    => '密码不能为空！',
             'password.min'         => '密码长度不能少于6位！',
             'password.confirmed'   => '两次输入密码不一致！',
-            'idcards.unique'      => '身份证号码重复！',
+            'idcards.unique'       => '身份证号码重复！',
         );
         // 进行验证
         $validator = Validator::make($inputs, $rules, $messages);
@@ -68,15 +68,6 @@ class UserController extends BaseController {
         // 身份证图片上传
         if( Input::hasFile('idcards_image') )
         {
-            // $rule    = ['idcards_image' => 'image'];
-            // $message = ['idcards_image.image' => '身份证照片上传格式不正确！'];
-            // 上传图片格式验证
-            // $validator = Validator::make($inputs, $rule, $message);
-            // if( $validator->fails() )
-            // {
-            //     P($validator->messages()->first());
-            // }
-
             $idcards_image = Input::file('idcards_image');
             $user->idcards_image = time();
             if( $inputs['idcards'] )
