@@ -32,12 +32,12 @@
                 </li>
                 <li class="active opened"><a href="#"><i class="entypo-doc-text-inv"></i><span>注册码管理</span></a>
                     <ul>
-                        <li><a href="/regcode/add-regcode"><i class="entypo-plus-squared"></i><span>添加注册码</span></a></li>
+                        <li><a href="/regcode/regcode-add"><i class="entypo-plus-squared"></i><span>添加注册码</span></a></li>
                         <li><a href=""><i class="entypo-help"></i><span>未申注册码</span></a></li>
                         <li class="active"><a href=""><i class="entypo-flag"></i><span>已申注册码</span></a></li>
                         <li><a href=""><i class="entypo-cancel-squared"></i><span>已删注册码</span></a></li>
                         <li><a href=""><i class="entypo-doc-text"></i><span>管理注册码</span></a></li>
-                        <li><a href=""><i class="entypo-cog"></i><span>注册码配置</span></a>
+                        <li><a href="#"><i class="entypo-cog"></i><span>注册码配置</span></a>
                             <ul>
                                 <li><a href="/regconf/config-add"><i class="entypo-list-add"></i><span>添加配置信息</span></a></li>
                                 <li><a href="/regconf/type-list"><i class="entypo-flow-tree"></i><span>类型管理</span></a></li>

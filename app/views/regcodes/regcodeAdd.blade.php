@@ -3,7 +3,7 @@
 @section('content')
 <h2>添加注册码</h2>
 <br />
-<div id="wrapper" module="regcode" class="row">
+<div class="row" id="wrapper" name="regcode-add" module="regcode">
     <div class="col-md-12">
         <div class="tabs-vertical-env">
             <ul class="nav tabs-vertical"><!-- available classes "right-aligned" -->
@@ -25,13 +25,11 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="regcode_type">注册码类型</label>
                                     <div class="col-sm-9">
-                                        <select id="regcode_type" name="test" class="selectboxit">
+                                        <select id="regcode_type" name="type" class="selectboxit">
                                             <optgroup label="请选择注册码类型">
-                                                <option value="1">Alabama</option>
-                                                <option value="2">Boston</option>
-                                                <option value="3">Ohaio</option>
-                                                <option value="4">New York</option>
-                                                <option value="5">Washington</option>
+                                                @foreach($type as $t_v)
+                                                <option value="{{ $t_v['id'] }}">{{ $t_v['name'] }}</option>
+                                                @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
@@ -39,11 +37,11 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="terminal">使用终端</label>
                                     <div class="col-sm-9">
-                                        <select id="terminal" name="test" class="selectboxit">
+                                        <select id="terminal" name="terminal" class="selectboxit">
                                             <optgroup label="请选择注册码使用终端">
-                                                <option value="1">电脑终端</option>
-                                                <option value="2">Web终端</option>
-                                                <option value="3">手机终端</option>
+                                                @foreach($terminal as $tl_v)
+                                                <option value="{{ $tl_v['id'] }}">{{ $tl_v['name'] }}</option>
+                                                @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
@@ -84,13 +82,11 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="regcode_type">注册码类型</label>
                                     <div class="col-sm-9">
-                                        <select id="regcode_type" name="test" class="selectboxit">
+                                        <select id="regcode_type" name="type" class="selectboxit">
                                             <optgroup label="请选择注册码类型">
-                                                <option value="1">Alabama</option>
-                                                <option value="2">Boston</option>
-                                                <option value="3">Ohaio</option>
-                                                <option value="4">New York</option>
-                                                <option value="5">Washington</option>
+                                                @foreach($type as $t_v)
+                                                <option value="{{ $t_v['id'] }}">{{ $t_v['name'] }}</option>
+                                                @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
@@ -98,11 +94,11 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="terminal">使用终端</label>
                                     <div class="col-sm-9">
-                                        <select id="terminal" name="test" class="selectboxit">
+                                        <select id="terminal" name="terminal" class="selectboxit">
                                             <optgroup label="请选择注册码使用终端">
-                                                <option value="1">电脑终端</option>
-                                                <option value="2">Web终端</option>
-                                                <option value="3">手机终端</option>
+                                                @foreach($terminal as $tl_v)
+                                                <option value="{{ $tl_v['id'] }}">{{ $tl_v['name'] }}</option>
+                                                @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
