@@ -37,6 +37,7 @@ define(function(require, explode) {
             }, 'json');
         });
     };
+
     // 删除注册码配置信息(类型或终端)
     explode.configDelete = function() {
         $('.config-delete').on('click', function() {
