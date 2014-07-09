@@ -3,7 +3,7 @@
 @section('content')
 <h2>添加新销售平台</h2>
 <br />
-<div id="wrapper" class="row" name="add-platform" module="system">
+<div id="wrapper" class="row" name="platform-add" module="system">
     <div class="col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-9">
-                        <button id="json-add-platform" type="submit" class="btn btn-success" data-url="/system/doAddPlatform">添加</button>
+                        <button id="json-platform-add" type="submit" class="btn btn-success" data-url="/system/platform-add">添加</button>
                         <button type="reset" class="btn">重置</button>
                     </div>
                 </form>

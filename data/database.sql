@@ -183,13 +183,14 @@ CREATE TABLE `regcode_terminal` (
 --
 DROP TABLE IF EXISTS `system_platform`;
 CREATE TABLE `system_platform` (
-    `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,        -- 主键
-    `name` VARCHAR(50) NOT NULL DEFAULT '',                    -- 平台名称
-    `created_by` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,     -- FK-添加用户ID
-    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 添加时间
-    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 修改时间
-    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,                -- 软删除
-    `description` VARCHAR(255) NOT NULL DEFAULT '',            -- 备注
+    `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,    -- 主键
+    `name` VARCHAR(50) NOT NULL DEFAULT '',                -- 平台名称
+    `user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,    -- FK-添加用户ID
+    `user_realname` VARCHAR(30) NOT NULL DEFAULT '',       -- 添加用户真实姓名
+    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 添加时间
+    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,      -- 修改时间
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,            -- 软删除
+    `description` VARCHAR(255) NOT NULL DEFAULT '',        -- 备注
     PRIMARY KEY (`id`),
     UNIQUE KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

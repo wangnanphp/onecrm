@@ -87,8 +87,8 @@
                 </li>
                 <li class="active"><a href="#"><i class="entypo-flow-tree"></i><span>销售平台</span></a>
                     <ul>
-                        <li><a href="/role/addRegcode"><i class="entypo-compass"></i><span>平台设置</span></a></li>
-                        <li><a href="/system/addPlatform"><i class="entypo-plus"></i><span>添加平台</span></a></li>
+                        <li><a href="/system/platform-list"><i class="entypo-compass"></i><span>平台设置</span></a></li>
+                        <li><a href="/system/platform-add"><i class="entypo-plus"></i><span>添加平台</span></a></li>
                     </ul>
                 </li>
             </ul>
