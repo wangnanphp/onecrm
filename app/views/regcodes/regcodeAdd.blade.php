@@ -110,6 +110,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="value">注册码价值</label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">￥</span>
+                                            <input class="form-control" name="value" type="text"  data-mask="99999" data-numeric="true" data-numeric-align="right" data-validate="required" data-message-required="亲，你你的注册码不要钱吗？" placeholder="必须为数字" />
+                                            <span class="input-group-addon">.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-2 control-label" for="regcode">是否开放申请</label>
                                     <div class="col-sm-9">
                                         <div class="make-switch" data-on-label="<i class='entypo-check'></i>" data-off-label="<i class='entypo-cancel'></i>">

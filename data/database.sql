@@ -211,7 +211,6 @@ CREATE TABLE `regcode` (
     `type_name` VARCHAR(50) NOT NULL DEFAULT '',               -- 类别名
     `regcode_terminal_id` MEDIUMINT(8) NOT NULL DEFAULT 1,     -- FK-使用终端ID
     `regcode_terminal_name` VARCHAR(50) NOT NULL DEFAULT '',   -- 使用终端名称
-    `user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,        -- FK-添加用户ID
     `allow_sell` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',     -- 是否开放销售
     `regcode_sell_id` INT(10) UNSIGNED NOT NULL DEFAULT 0,     -- FK-是否销售ID
     `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 添加时间

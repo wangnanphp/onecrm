@@ -85,6 +85,7 @@
     {{ HTML::script('static/template/js/jquery.multi-select.js', ['id' => 'script-resource-19']) }}
     {{ HTML::script('static/template/js/bootstrap-switch.min.js', ['id' => 'script-resource-20']) }}
     {{ HTML::script('static/script/lib/jqueryvalidation/1.11.1/jquery.validate.min.js', ['id' => 'script-resource-21']) }}
+    {{ HTML::script('static/template/js/jquery.inputmask.bundle.min.js', ['id' => 'script-resource-22']) }}
 
     <script type="text/javascript">
         var _gaq = _gaq || [];
