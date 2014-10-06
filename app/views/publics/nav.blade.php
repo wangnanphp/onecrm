@@ -26,17 +26,17 @@
             <ul>
                 <li><a href="#"><i class="entypo-home"></i><span>我的注册码</span></a>
                     <ul>
-                        <li><a href=""><i class="entypo-compass"></i><span>申请注册码</span></a></li>
-                        <li><a href=""><i class="entypo-archive"></i><span>已申注册码</span></a></li>
+                        <li><a href="/regcode/apply"><i class="entypo-compass"></i><span>申请注册码</span></a></li>
+                        <li><a href="/regcode/my"><i class="entypo-archive"></i><span>已申注册码</span></a></li>
                     </ul>
                 </li>
                 <li class="active opened"><a href="#"><i class="entypo-doc-text-inv"></i><span>注册码管理</span></a>
                     <ul>
                         <li><a href="/regcode/regcode-add"><i class="entypo-plus-squared"></i><span>添加注册码</span></a></li>
-                        <li><a href=""><i class="entypo-help"></i><span>未申注册码</span></a></li>
-                        <li class="active"><a href=""><i class="entypo-flag"></i><span>已申注册码</span></a></li>
-                        <li><a href=""><i class="entypo-cancel-squared"></i><span>已删注册码</span></a></li>
-                        <li><a href=""><i class="entypo-doc-text"></i><span>管理注册码</span></a></li>
+                        <li><a href="/regcode/list-no-apply"><i class="entypo-help"></i><span>未申注册码</span></a></li>
+                        <li class="active"><a href="/regcode/list-already-apply"><i class="entypo-flag"></i><span>已申注册码</span></a></li>
+                        <li><a href="/regcode/list-delete"><i class="entypo-cancel-squared"></i><span>已删注册码</span></a></li>
+                        <li><a href="/regcode/list-all"><i class="entypo-doc-text"></i><span>管理注册码</span></a></li>
                         <li><a href="#"><i class="entypo-cog"></i><span>注册码配置</span></a>
                             <ul>
                                 <li><a href="/regconf/config-add"><i class="entypo-list-add"></i><span>添加配置信息</span></a></li>
@@ -64,6 +64,14 @@
                         <li><a href=""><i class="entypo-doc-text"></i><span>实物退货管理</span></a></li>
                         <li><a href=""><i class="entypo-doc-text"></i><span>实物换货管理</span></a></li>
                         <li><a href=""><i class="entypo-cancel-squared"></i><span>过期实物商品</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul>
+                <li class=""><a href="/regcode"><i class="entypo-doc-text-inv"></i><span>类别管理</span></a>
+                    <ul>
+                        <li><a href="/goodstype"><i class="entypo-help"></i><span>类别列表</span></a></li>
+                        <li><a href="/goodstype/add"><i class="entypo-plus-squared"></i><span>添加类别</span></a></li>
                     </ul>
                 </li>
             </ul>
