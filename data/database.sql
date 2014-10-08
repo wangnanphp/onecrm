@@ -13,6 +13,27 @@
 --
 -- -----------------------------------------------------------------------------
 
+-- -----------------------------------------------------------------------------
+-- Table(1): `user`
+-- Table(2): `role`
+-- Table(3): `permission`
+-- Table(4): `user_role`
+-- Table(5): `role_permission`
+-- Table(6): `regcode_type`
+-- Table(7): `regcode_terminal`
+-- Table(8): `system_platform`
+-- Table(9): `regcode`
+-- Table(10): `regcode_sell`
+-- Table(11): `goods`
+-- Table(12): `goods_type`
+-- Table(13): `goods_stock`
+-- Table(14): `goods_sell`
+-- Table(15): `goods_buyer`
+-- Table(16): `goods_back`
+-- Table(17): `goods_barter`
+-- -----------------------------------------------------------------------------
+
+
 
 -- -----------------------------------------------------------------------------
 -- Database: `onecrm`
@@ -159,7 +180,7 @@ CREATE TABLE `regcode_type` (
 
 
 -- -----------------------------------------------------------------------------
--- Table(7) `regcode_terminal`
+-- Table(7): `regcode_terminal`
 -- Description 注册码使用终端信息表
 --
 DROP TABLE IF EXISTS `regcode_terminal`;
@@ -178,7 +199,7 @@ CREATE TABLE `regcode_terminal` (
 
 
 -- -----------------------------------------------------------------------------
--- Table(8) `system_platform`
+-- Table(8): `system_platform`
 -- Description 销售平台信息表
 --
 DROP TABLE IF EXISTS `system_platform`;
@@ -197,25 +218,25 @@ CREATE TABLE `system_platform` (
 
 
 -- -----------------------------------------------------------------------------
--- Table(9) `regcode`
+-- Table(9): `regcode`
 -- Description 注册码信息表
 --
 DROP TABLE IF EXISTS `regcode`;
 CREATE TABLE `regcode` (
-    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,             -- 主键
-    `number` VARCHAR(100) NOT NULL DEFAULT '',                 -- 注册码
-    `value` DECIMAL(10,2)  NOT NULL DEFAULT 0,                 -- 价值
-    `user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,        -- FK-添加用户ID
-    `user_realname` VARCHAR(30) NOT NULL DEFAULT '',           -- 添加者姓名
-    `type_id` MEDIUMINT(8) NOT NULL DEFAULT 0,                 -- FK-类别ID
-    `type_name` VARCHAR(50) NOT NULL DEFAULT '',               -- 类别名
-    `regcode_terminal_id` MEDIUMINT(8) NOT NULL DEFAULT 1,     -- FK-使用终端ID
-    `regcode_terminal_name` VARCHAR(50) NOT NULL DEFAULT '',   -- 使用终端名称
-    `allow_sell` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',     -- 是否开放销售
-    `regcode_sell_id` INT(10) UNSIGNED NOT NULL DEFAULT 0,     -- FK-是否销售ID
-    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 添加时间
-    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 修改时间
-    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,                -- 软删除
+    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,            -- 主键
+    `number` VARCHAR(100) NOT NULL DEFAULT '',                -- 注册码
+    `value` DECIMAL(10,2)  NOT NULL DEFAULT 0,                -- 价值
+    `user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,       -- FK-添加用户ID
+    `user_realname` VARCHAR(30) NOT NULL DEFAULT '',          -- 添加者姓名
+    `type_id` MEDIUMINT(8) NOT NULL DEFAULT 0,                -- FK-类别ID
+    `type_name` VARCHAR(50) NOT NULL DEFAULT '',              -- 类别名
+    `terminal_id` MEDIUMINT(8) NOT NULL DEFAULT 1,            -- FK-使用终端ID
+    `terminal_name` VARCHAR(50) NOT NULL DEFAULT '',          -- 使用终端名称
+    `allow_sell` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',    -- 是否开放销售
+    `is_sell` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 是否销售(1:是，0：否)
+    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,         -- 添加时间
+    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,         -- 修改时间
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,               -- 软删除
     PRIMARY KEY (`id`),
     UNIQUE KEY (`number`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -230,7 +251,8 @@ CREATE TABLE `regcode_sell` (
     `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,             -- 主键
     `regcode_id` INT(10) NOT NULL DEFAULT 0,                   -- FK-注册码ID
     `get_user_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,    -- FK-领取用户ID
-    `get_time` INT(10) UNSIGNED NOT NULL DEFAULT 0,            -- 领取时间
+    `get_user_realname` VARCHAR(30) NOT NULL DEFAULT '',       -- 领取者姓名
+    `buyer_order_number` VARCHAR(60) NOT NULL DEFAULT '',      -- 购买者订单号码
     `buyer_name` VARCHAR(30) NOT NULL DEFAULT '',              -- 购买者姓名
     `buyer_ww` VARCHAR(20) NOT NULL DEFAULT '',                -- 购买者旺旺
     `buyer_qq` VARCHAR(20) NOT NULL DEFAULT '',                -- 购买者QQ
@@ -238,6 +260,9 @@ CREATE TABLE `regcode_sell` (
     `system_platform_id` MEDIUMINT(8) NOT NULL DEFAULT 1,      -- FK-销售平台ID
     `system_platform_name` VARCHAR(50) NOT NULL DEFAULT '',    -- 销售平台名称
     `remark` VARCHAR(255) NOT NULL DEFAULT '',                 -- 备注
+    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 添加时间
+    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,          -- 修改时间
+    `deleted_at` INT(10) UNSIGNED DEFAULT NULL,                -- 软删除
     PRIMARY KEY (`id`),
     UNIQUE KEY (`regcode_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -275,7 +300,7 @@ CREATE TABLE `goods` (
 
 
 -- -----------------------------------------------------------------------------
--- Table(12) `goods_type`
+-- Table(12): `goods_type`
 -- Description 商品类型表
 --
 DROP TABLE IF EXISTS `goods_type`;
@@ -286,9 +311,9 @@ CREATE TABLE `goods_type` (
     `pid` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0,        -- 父类型ID
     `name` VARCHAR(60) NOT NULL DEFAULT '',                -- 类型名称
     `path` VARCHAR(255) NOT NULL DEFAULT '',               -- 类型路径
-    `dscription` VARCHAR(255) NOT NULL DEFAULT '',         -- 描述
-    `create_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,       -- 创建时间
-    `update_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,       -- 修改时间
+    `description` VARCHAR(255) NOT NULL DEFAULT '',         -- 描述
+    `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,       -- 创建时间
+    `updated_at` INT(10) UNSIGNED NOT NULL DEFAULT 0,       -- 修改时间
     `deleted_at` INT(10) UNSIGNED DEFAULT NULL,            -- 软删除
     `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,       -- 状态
     PRIMARY KEY (`id`),
@@ -298,7 +323,7 @@ CREATE TABLE `goods_type` (
 
 
 -- -----------------------------------------------------------------------------
--- Table(13) `goods_stock`
+-- Table(13): `goods_stock`
 -- Description 商品库存表
 --
 DROP TABLE IF EXISTS `goods_stock`;
@@ -330,7 +355,7 @@ CREATE TABLE `goods_stock` (
 
 
 -- -----------------------------------------------------------------------------
--- Table(14) `goods_sell`
+-- Table(14): `goods_sell`
 -- Description 商品销售表
 --
 DROP TABLE IF EXISTS `goods_sell`;
@@ -373,7 +398,7 @@ CREATE TABLE `goods_sell` (
 
 
 -- -----------------------------------------------------------------------------
--- Table(15) `goods_buyer`
+-- Table(15): `goods_buyer`
 -- Description 购买者表
 --
 DROP TABLE IF EXISTS `goods_buyer`;
@@ -422,7 +447,7 @@ CREATE TABLE `goods_buyer` (
 
 
 -- -----------------------------------------------------------------------------
--- Table(16) `goods_back`
+-- Table(16): `goods_back`
 -- Description 商品退货表
 --
 DROP TABLE IF EXISTS `goods_back`;
@@ -458,7 +483,7 @@ CREATE TABLE `goods_back` (
 
 
 -- -----------------------------------------------------------------------------
--- Table(17) `goods_barter`
+-- Table(17): `goods_barter`
 -- Description 商品换货表
 --
 DROP TABLE IF EXISTS `goods_barter`;
